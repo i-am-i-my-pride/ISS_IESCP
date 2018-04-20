@@ -1,0 +1,98 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="客户问诊记录">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">用户姓名</td><td><input is="iss-input"  v-model="filter.CUserName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">咨询内容</td><td><input is="iss-input" v-model="filter.CCmContent"  vtype="text" range="[0,50]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号</td><td><input is="iss-input" v-model="filter.CMobile" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">性别</td><td><input is="iss-select" :datasource="dict.cus_sex" v-model="filter.CSex"/></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list"  style="height: 200px;">
+			<table class="border">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th style="width: 80px;" class="order" orderBy="CUserName">用户姓名</th>
+						<th style="width: 120px;" class="order" orderBy="CMobile">手机号</th>
+						<th style="width: 80px;" class="order" orderBy="CCertfCls">证件类型</th>
+						<th style="width: 150px;" class="order" orderBy="CCertfCde">证件号码</th>
+						<th style="width: 40px;" class="order" orderBy="CSex">性别</th>
+						<th class="order" orderBy="CCmContent">咨询内容</th>
+						<th style="width: 180px;" class="order" orderBy="TRecordCreateDate">创建时间</th>
+						<th style="width: 180px;" class="order" orderBy="TRecordReplyDate">回复时间</th>
+						<th style="width: 80px;" class="order" orderBy="CType">类型</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td><input is="iss-input" v-model="row.CUserName"/></td>
+						<td><input is="iss-input" v-model="row.CMobile"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+						<td><input is="iss-select" :datasource="dict.cus_sex" v-model="row.CSex"/></td>
+						<td><input is="iss-input" v-model="row.CCmContent"/></td>
+						<td><input is="iss-input" v-model="row.TRecordCreateDate"/></td>
+						<td><input is="iss-input" v-model="row.TRecordReplyDate"/></td>
+						<td><input is="iss-select" :datasource="dict.referType" v-model="row.CType"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="dialog" slot="template" slot-scope="model">
+				<div is="iss-card">
+					<table is="iss-form">
+						<tr>
+							<td class="must">用户姓名</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CUserName"/></td>
+							<td class="must">手机号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CMobile"/></td>
+						</tr>
+						<tr>
+							<td>证件类型</td>
+							<td><input is="iss-select" :datasource="dict.certfType" v-model="model.tmpl.CCertfCls"/></td>
+							<td>证件号码</td>
+							<td><input is="iss-input" v-model="model.tmpl.CCertfCde"/></td>
+						</tr>
+						<tr>
+							<td class="must">性别</td>
+							<td><input is="iss-select" :datasource="dict.sex" class="must" v-model="model.tmpl.CSex"/></td>
+							<td>咨询内容</td>
+							<td><input is="iss-input" v-model="model.tmpl.CCmContent"/></td>
+			            </tr>
+						<tr>
+							<td class="must">创建时间</td>
+							<td><input is="iss-date" class="must" v-model="model.tmpl.TRecordCreateDate"/></td>
+							<td>回复时间</td>
+							<td><input is="iss-date" v-model="model.tmpl.TRecordReplyDate"/></td>
+			            </tr>
+						<tr>
+							<td class="must">类型</td>
+							<td><input is="iss-select" :datasource="dict.referType" class="must" v-model="model.tmpl.CType"/></td>
+			            </tr>
+			        </table>
+				</div>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="导入" @click="importData"/>
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus_inquiry", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

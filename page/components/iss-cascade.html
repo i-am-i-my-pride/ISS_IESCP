@@ -1,0 +1,36 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+<script type="text/javascript" src="../../address.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-card" title="iss-cascade">
+        <table is="iss-form" ref="vFilter">
+            <tr>
+                <td style="width: 120px;">地址</td>
+                <td><input is="iss-cascade" v-model="filter.DStatus" /></td>
+            </tr>
+            <tr>
+                <td style="width: 120px;">自定义</td>
+                <td><input is="iss-cascade" :datasource="dataSourceDemo1" v-model="filter.CStatus" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<style>
+    .iss-form .iss-select > input, .iss-form .iss-date > input, .iss-form .iss-cascade > input{
+        height:22px;
+        width:160px;
+    }
+</style>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo","issapi","iss-address"], function(main) {
+		main.init();
+	} ); 
+</script>

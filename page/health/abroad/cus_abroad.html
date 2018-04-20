@@ -1,0 +1,170 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="客户海外转诊">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">用户姓名</td><td><input is="iss-input" v-model="filter.CPeopleName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">医院名称</td><td><input is="iss-input" v-model="filter.CHospitalName" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号</td><td><input is="iss-input" v-model="filter.CMobile" vtype="text"  range="[0,20]"/></td>
+					<td style="width: 120px;">科室名称</td><td><input is="iss-input" v-model="filter.CDeptName" vtype="text" range="[0,20]" /></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">预约类型</td><td><input is="iss-select" :datasource="dict.orderStatus" v-model="filter.COrderStatus" /></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th style="width: 120px;">操作</th>
+						<th class="order" orderBy="CPeopleName">就诊人姓名</th>
+						<th class="order" orderBy="CMobile">手机号</th>
+						<th class="order" orderBy="CCertfCls">证件类型</th>
+						<th class="order" orderBy="CCertfCde">证件号码</th>
+						<th class="order" orderBy="CHospitalName">医院名称</th>
+						<th class="order" orderBy="CDeptName">科室名称</th>
+						<th class="order" orderBy="TUsedTm">使用时间</th>
+						<th class="order" orderBy="TTreatment">就诊时间</th>
+						<th class="order" orderBy="TCancelDate">取消时间</th>
+						<th class="order" orderBy="COrderStatus">预约类型</th>
+						<th class="order" orderBy="CDesc">备注</th>
+						<th class="order" orderBy="CCancelReason">取消原因</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td>
+							<input is="iss-btn" type="update" @click="update(index, $event)">
+							<input is="iss-btn" type="remove" @click="remove(index, $event)">
+						</td>
+						<td><input is="iss-input" v-model="row.CPeopleName"/></td>
+						<td><input is="iss-input" v-model="row.CMobile"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+						<td><input is="iss-input" v-model="row.CHospitalName"/></td>
+						<td><input is="iss-input" v-model="row.CDeptName"/></td>
+						<td><input is="iss-input" v-model="row.TUsedTm"/></td>
+						<td><input is="iss-input" v-model="row.TTreatment"/></td>
+						<td><input is="iss-input" v-model="row.TCancelDate"/></td>
+						<td><input is="iss-input" :datasource="dict.orderStatus" v-model="row.COrderStatus"/></td>
+						<td><input is="iss-input" v-model="row.CDesc"/></td>
+						<td><input is="iss-input" :datasource="dict.cancelReason" v-model="row.CCancelReason"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 140px;"></col>
+					</colgroup>
+					<tr>
+						<td class="must">就诊人姓名</td>
+						<td style="width: 280px;">
+							<input is="iss-input" class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CPeopleName"  vtype="text" range="[1,12]" validmsg="请输入就诊人姓名"/>
+							<input v-if=!updateStatus is="iss-btn" type="base" value="选择用户" @click="chooseUser(model.tmpl)"/>
+						</td>
+						<td class="">手机号</td>
+						<td><input is="iss-input" class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CMobile" vtype="phone"/></td>
+					</tr>
+					<tr>
+						<td class="">体检人证件类型</td>
+						<td><input is="iss-select" class="must readonly CCertfCls" style="border:1px solid #ccc" v-model="model.tmpl.CCertfCls" :datasource="dict.certfType"/></td>
+						<td class="">体检人证件号</td>
+						<td v-if="model.tmpl.CCertfCls=='0'"><input is="iss-input" class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CCertfCde" vtype="card"/></td>
+						<td v-else><input is="iss-input" class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CCertfCde" vtype="text" range="[0,18]"/></td>
+					</tr>
+					<tr>
+						<td class="">就诊时间</td>
+						<td><input is="iss-date" :minDate="issapi.diff(model.tmpl.TUsedTm,'d',1)" dateFmt="yyyy-MM-dd HH:mm:ss" v-model="model.tmpl.TTreatment"/></td>
+						<td class="">使用时间</td>
+						<td><input is="iss-date"  :maxDate="issapi.diff(model.tmpl.TTreatment,'d',-1)" dateFmt="yyyy-MM-dd HH:mm:ss" v-model="model.tmpl.TUsedTm"/></td>
+					</tr>
+					<tr>
+						<td class="">医院名称</td>
+						<td><input is="iss-input" v-model="model.tmpl.CHospitalName" vtype="text"/></td>
+						<td class="">科室名称</td>
+						<td><input is="iss-input" v-model="model.tmpl.CDeptName" vtype="text"/></td>
+					</tr>
+					<tr>
+						<td class="must">预约类型</td>
+						<td><input is="iss-select" v-model="model.tmpl.COrderStatus" :datasource="dict.orderStatus" range="[1]" class="must" validmsg="请选择预约类型"/></td>
+					</tr>
+					<tr>
+						<td v-if="model.tmpl.COrderStatus=='4'">取消时间</td>
+						<td v-if="model.tmpl.COrderStatus=='4'"><input is="iss-date" :minDate="issapi.diff(!model.tmpl.TTreatment?new Date():model.tmpl.TTreatment)" dateFmt="yyyy-MM-dd HH:mm:ss" v-model="model.tmpl.TCancelDate"/></td>
+						<td v-if="model.tmpl.COrderStatus=='4'">取消原因</td>
+						<td v-if="model.tmpl.COrderStatus=='4'"><input is="iss-select" v-model="model.tmpl.CCancelReason" :datasource="dict.cancelReason"/></td>
+					</tr>
+					<tr>
+						<td :class="{must:model.tmpl.CCancelReason=='4' && model.tmpl.COrderStatus=='4'}">备注</td>
+						<td v-if="model.tmpl.CCancelReason=='4' && model.tmpl.COrderStatus=='4'" colspan="3"><input is="iss-input" multiline="true" style="width:90%;" v-model="model.tmpl.CDesc" class="must iss-input" range="[1,255]" validmsg="请输入备注"/></td>
+						<td v-else colspan="3"><input is="iss-input" class="iss-input" multiline="true" style="width:90%;" v-model="model.tmpl.CDesc"/></td>
+					</tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="insert" @click="add()"/>
+			<input is="iss-btn" type="delete" @click="remove()"/>
+			<input is="iss-btn" type="modify" @click="update()"/>
+			<input is="iss-btn" type="base" value="导入" @click="importData"/>
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+	<div id="userDiv" class="dialog">		
+		<div is="iss-card" title="用户列表">
+			<table is="iss-form">
+				<tr>
+					<td style="width: 120px;">客户姓名</td><td><input is="iss-input" v-model="userFilter.CName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">手机号码</td><td><input is="iss-input" v-model="userFilter.CMobile"  vtype="text" range="[0,20]" /></td>
+				</tr>
+			</table>
+			<div slot="footer"><input is="iss-btn" type="query" @click="listUser()"/><input is="iss-btn" type="reset"/></div>
+		</div>
+		<div is="iss-list" ref="user" :datasource="userData" :gotopage="listUser">
+			<table>
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th>客户姓名</th>
+						<th>手机号码</th>
+						<th>证件类型</th>
+						<th>证件号码</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) of userData">
+						<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+						<td><input is="iss-input" v-model="row.CName"/></td>
+						<td><input is="iss-input" v-model="row.CMobile"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br/>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus_abroad", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>
+<style>
+   #pageDiv .CCertfCls input{
+       width:158px;
+   }
+</style>

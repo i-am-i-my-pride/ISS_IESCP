@@ -1,0 +1,69 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="医院清单">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">医院名称</td>
+					<td><input is="iss-input" v-model="filter.CHosNme" vtype="text" range="[0,20]" /></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th class="order" orderBy="CHosNme">医院名称</th>
+						<th class="order" orderBy="CHosAddr">医院地址</th>
+						<th class="order" orderBy="CHosLvl">医院等级</th>
+						<th class="order" orderBy="CCity">城市</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td><input is="iss-input" v-model="row.CHosNme"/></td>
+						<td><input is="iss-input" v-model="row.CHosAddr"/></td>
+						<td><input is="iss-input" v-model="row.CHosLvl"/></td>
+						<td><input is="iss-input" v-model="row.CCity"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 120px;"></col>
+					</colgroup>
+					<tr>
+						<td class="must">医院名称</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CHosNme"/></td>
+						<td class="must">城市</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CCity"/></td>
+					</tr>
+					<tr>
+						<td class="must">医院地址</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CHosAddr"/></td>
+						<td class="must">医院等级</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CHosLvl"/></td>
+					</tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="导入" @click="importData"/>
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["hospital", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

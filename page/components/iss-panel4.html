@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-panel" title="脚注区的使用">
+        <div slot="footer">脚注区</div>
+    </div>
+</div>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo"], function(main) {
+		main.init();
+	} ); 
+</script>

@@ -1,0 +1,117 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="客户服务管理">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">客户姓名</td><td><input is="iss-input" v-model="filter.CName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">服务项目</td><td><input is="iss-select" v-model="filter.CProName" :datasource="project"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号码</td><td><input is="iss-input" v-model="filter.CMobile"  vtype="text" range="[0,20]" /></td>
+					<td style="width: 120px;">证件号</td><td><input is="iss-input" v-model="filter.CCertfCde" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">性别</td><td><input is="iss-select" v-model="filter.CSex" :datasource="dict.cus_sex"/></td>
+				</tr> 
+			</table>
+			<div slot="footer"><input is="iss-btn" type="query" @click="list()"/><input is="iss-btn" type="reset"/></div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th rowspan="2" class="index selector more">全选</th>
+						<th rowspan="2" style="width: 60px;">操作</th>
+						<th rowspan="2" class="order" orderBy="CName" style="width:80px;" >客户姓名</th>
+						<th rowspan="2" class="order" orderBy="CMobiles" style="width:100px;">手机号</th>
+						<th rowspan="2" class="order" orderBy="CCertfCls">证件类型</th>
+						<th rowspan="2" class="order" orderBy="CCertfCdes" style="width:160px;">证件号码</th>
+						<th rowspan="2" class="order" orderBy="CEmail">邮箱</th>
+						<th rowspan="2" class="order" orderBy="CSex">性别</th>
+						<th rowspan="2" class="order" orderBy="CProName" style="width:100px;">服务项目</th>
+						<th rowspan="2" class="order" orderBy="CBizId" style="width:100px;">订单号/保单号</th>
+						<th rowspan="2"class="order" orderBy="NValidNum">服务总次数</th>
+						<th rowspan="2" class="order" orderBy="NInvalidNum" style="width:90px;">己用服务次数</th>
+						<th colspan="2" >有效期</th>
+						<th rowspan="2" class="order" orderBy="CSource">来源</th>
+					</tr>
+					<tr><th class="order" orderBy="TBgnTime">开始时间</th><th class="order" orderBy="TEngTime">结束时间</th></tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) of rowsData">
+						<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+						<td><input is="iss-btn" type="view" @click="see(idx)"></td>
+						<td><input is="iss-input" v-model="row.CName"/></td>
+						<td><input is="iss-input" v-model="row.CMobiles"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td ><input is="iss-input" v-model="row.CCertfCdes"/></td>
+						<td><input is="iss-input" v-model="row.CEmail"/></td>
+						<td><input is="iss-select" :datasource="dict.cus_sex" v-model="row.CSex"/></td>
+						<td><input is="iss-input" :datasource="project" v-model="row.CProName"/></td>
+						<td><input is="iss-input" v-model="row.CBizId"/></td>
+						<td><input is="iss-input" v-model="row.NValidNum"/></td>
+						<td><input is="iss-input" v-model="row.NInvalidNum"/></td>
+						<td><input is="iss-input" v-model="row.TBgnTime" datefmt="yyyy-MM-dd"/></td>
+						<td><input is="iss-input" v-model="row.TEngTime" datefmt="yyyy-MM-dd"/></td>
+						<td><input is="iss-select" :datasource="dict.source" v-model="row.CSource"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card"  slot="dialog" slot-scope="model"> 
+					<table is="iss-form" :readonly="model.tmpl.readonly">
+						<tr>
+							<td class="">客户姓名</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CName" /></td>
+							<td class="">手机号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CMobile"/></td>
+						</tr>
+						<tr>
+							<td class="">证件类型</td>
+							<td><input is="iss-select" :datasource="dict.certfType" class="must" v-model="model.tmpl.CCertfCls"/></td>
+							<td class="">证件号码</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CCertfCde"/></td>
+						</tr>
+						<tr>
+							<td class="">邮箱</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CEmail"/></td>
+							<td class="">性别</td>
+							<td><input is="iss-select" :datasource="dict.cus_sex" class="must" v-model="model.tmpl.CSex"/></td>
+						</tr>
+						<tr>
+							<td class="">服务项目</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CProName"/></td>
+							<td class="">订单号/保单号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CBizId"/></td>
+						</tr>
+						<tr>
+							<td class="">服务总次数</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.NValidNum"/></td>
+							<td class="">已用服务次数</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.NInvalidNum"/></td>
+						</tr>
+						<tr>
+							<td class="">开始时间</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.TBgnTime" datefmt="yyyy-MM-dd"/></td>
+							<td class="">结束时间</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.TEngTime" datefmt="yyyy-MM-dd"/></td>
+						</tr>
+						<tr>
+							<td class="">来源</td>
+							<td><input is="iss-select" :datasource="dict.source" class="must" v-model="model.tmpl.CSource"/></td>
+						</tr>
+			        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus-service", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

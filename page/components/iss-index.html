@@ -1,0 +1,39 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-card" title="iss-index行序组件">
+        <table is="iss-list" :datasource="rowsData">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="index selector more">全选</th>
+                    <th rowspan="2" style="width: 439px;"></th>
+                    <th rowspan="2" style="width: 439px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(row, idx) of rowsData">
+                    <td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<style>
+    .iss-form .iss-input{
+        height:22px;
+        width:160px;
+    }
+</style> 
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo","issapi"], function(main) {
+		main.init();
+	} ); 
+</script>

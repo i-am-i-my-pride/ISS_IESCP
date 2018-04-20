@@ -1,0 +1,122 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="合约管理">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">合约编码</td>
+					<td><input is="iss-input" v-model="filter.CContractCode"/></td>
+					<td style="width: 120px;">合约名称</td>
+					<td><input is="iss-input" v-model="filter.CContractName" vtype="text"  range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">合约类型</td>
+					<td><input is="iss-select" :datasource="dict.contractType" v-model="filter.CContractType" vtype="text"  range="[0,20]"/></td>
+					<td style="width: 120px;">生效日期</td>
+					<td><input input is="iss-date" datefmt="yyyy-MM-dd" v-model="filter.TBgnTime"/></td>
+
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th class="order" orderBy="CContractCode">合约编码</th>
+						<th class="order" orderBy="CContractName">合约名称</th>
+						<th class="order" orderBy="CContractType">合约类型</th>
+						<th class="order" orderBy="CConObjName">合约对象名称</th>
+						<th class="order" orderBy="TSignedDate">合约签订日期</th>
+						<th class="order" orderBy="CEarlyDays">提前协商天数</th>
+						<th class="order" orderBy="CTermTyp">合约期限类型</th>
+						<th class="order" orderBy="TBgnTime">合约生效日期</th>
+						<th class="order" orderBy="TEngTime">合约截止日期</th>
+						<th class="order" orderBy="CDesc">合约备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td><input is="iss-input" v-model="row.CContractCode" /></td>
+						<td><input is="iss-input" v-model="row.CContractName" /></td>
+						<td><input is="iss-select" :datasource="dict.contractType" v-model="row.CContractType" /></td>
+						<td>
+						<input v-if="row.CConObjName!='Contract_CCo'" is="iss-select" :datasource="dpts" v-model="row.CConObjName" />
+						<input v-else is="iss-select" :datasource="dict.contractObj" v-model="row.CConObjName" />
+						</td>
+						<td><input is="iss-input" v-model="row.TSignedDate" /></td>
+						<td><input is="iss-input" v-model="row.CEarlyDays" /></td>
+						<td><input is="iss-select" :datasource="dict.termType" v-model="row.CTermTyp" /></td>
+						<td><input is="iss-input" v-model="row.TBgnTime" /></td>
+						<td><input is="iss-input" v-model="row.TEngTime" /></td>
+						<td><input is="iss-input" v-model="row.CDesc"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 120px;"></col>
+					</colgroup>
+					<tr>
+						<td v-if="updateStatus">合约编码</td>
+						<td v-if="updateStatus"><input is="iss-input"  :class="{readonly:updateStatus,must:true}"  v-model="model.tmpl.CContractCode"/></td>
+						<td class="must">合约名称</td>
+						<td><input is="iss-input" :class="{readonly:updateStatus,must:true}" v-model="model.tmpl.CContractName" vtype="text"  range="[1,255]" validmsg="请输入合约名称"/></td>
+					</tr>
+					<tr>
+						<td class="must">合约类型</td>
+						<td><input is="iss-select" @changeval="model.tmpl.CConObjName=''"  :datasource="dict.contractType" v-model="model.tmpl.CContractType"  class="must" validmsg="请选择合约类型"/></td>
+						<td class="must">合约对象名称</td>
+						<td v-if="model.tmpl.CContractType=='1'"><input is="iss-select" :datasource="dpts" v-model="model.tmpl.CConObjName"  class="must" validmsg="请选择合约对象名称"/></td>
+						<td v-else-if="model.tmpl.CContractType=='2'"><input is="iss-select" :datasource="dict.contractObj" v-model="model.tmpl.CConObjName"  class="must" validmsg="请选择合约对象名称"/></td>
+						<td v-else><input is="iss-select" datasource v-model="model.tmpl.CConObjName"  class="must" validmsg="请选择合约对象名称"/></td>
+					</tr>
+					<tr>
+						<td class="">提前协商天数</td>
+						<td><input is="iss-input" v-model="model.tmpl.CEarlyDays" vtype="int"/></td>
+						<td class="must">合约期限类型</td>
+						<td><input is="iss-select" :datasource="dict.termType" v-model="model.tmpl.CTermTyp" class="must" validmsg="请选择合约期限类型"/></td>
+					</tr>
+					<tr>
+						<td class="must">合约生效日期</td>
+						<td><input is="iss-date" class="must"  validmsg="请选择合约生效日期" dateFmt="yyyy-MM-dd"
+						 v-model="model.tmpl.TBgnTime" 
+						 :minDate="issapi.diff(!model.tmpl.TSignedDate?new Date():model.tmpl.TSignedDate)"
+						 :maxDate="issapi.diff(model.tmpl.TEngTime,'d',-1)"/></td>		
+						<td :class="{must:model.tmpl.CTermTyp=='1'}">合约签订日期</td>
+						<td v-if="model.tmpl.CTermTyp=='1'" ><input is="iss-date"  dateFmt="yyyy-MM-dd"  v-model="model.tmpl.TSignedDate" class="must" validmsg="请选择合约签订日期"  :minDate="issapi.diff(new Date())"  :maxDate="issapi.diff(model.tmpl.TEngTime,'d',-1)"/></td>
+						<td v-else><input is="iss-date" dateFmt="yyyy-MM-dd" v-model="model.tmpl.TSignedDate" :minDate="issapi.diff(new Date())"  :maxDate="issapi.diff(model.tmpl.TEngTime,'d',-1)"/></td>						
+					</tr>
+					<tr>
+						<td :class="{must:model.tmpl.CTermTyp=='1'}">合约截止日期</td>
+						<td v-if="model.tmpl.CTermTyp=='1'"><input is="iss-date"  dateFmt="yyyy-MM-dd" v-model="model.tmpl.TEngTime" class="must" validmsg="请选择合约截止日期" :minDate="issapi.diff(!model.tmpl.TSignedDate?new Date():model.tmpl.TSignedDate,'d',1)"/></td>
+						<td v-else><input is="iss-date"  dateFmt="yyyy-MM-dd" v-model="model.tmpl.TEngTime" :minDate="issapi.diff(!model.tmpl.TSignedDate?new Date():model.tmpl.TSignedDate,'d',1)"/></td>
+					</tr>
+					<tr>
+						<td class="">合约备注</td>
+						<td colspan="3"><input is="iss-input" v-model="model.tmpl.CDesc" multiline="true" style="width:96%;" range="[0,255]"/></td>
+					</tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="insert" @click="add()"/>
+			<input is="iss-btn" type="delete" @click="remove()"/>
+			<input is="iss-btn" type="modify" @click="update()"/>
+			<!-- <input is="iss-btn" type="base" value="合约附件" @click="uploadReport()"/> -->
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use(["contract", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

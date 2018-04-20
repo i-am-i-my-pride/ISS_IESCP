@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+	<div is="iss-card" title="layer">
+		<input is="iss-input" style="width:80px;cursor:pointer;color:#41cdbb" class="readonly" value="请点击选择" @click="getBBren" />
+			<input is="iss-input" style="width:145px;" v-model="BBcheckbox1" />
+		<div is="iss-card" id="BBren" class="dialog" style="display:none;">
+			<span v-for="(items,index) of BBcheckbox"> &nbsp;&nbsp; 
+			     <input is="iss-tag" :title="items" :value="items" v-model="BBcheckbox1" />
+			</span>
+		</div>
+	</div>
+</div>
+<style>
+     .iss-input{
+        width:160px;
+        height:22px;
+     }
+</style> 
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo","issapi","normalize-css", "iss-main-css", "iss-component-css", "layer-css", "ztree-css"], function(main) {
+		main.init();
+	} ); 
+</script>

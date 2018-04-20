@@ -1,0 +1,1622 @@
+@charset "UTF-8";
+
+[v-cloak] {
+  display: none;
+}
+
+/** 面板 */
+.iss-panel {
+	border: 1px solid #e6ebf5;
+	background: #fff;
+}
+.iss-panel > .tdiv {
+	background: #20a2ff;
+}
+.iss-panel > .tdiv > .title {
+	font-size: 16px;
+	color: #fff;
+	height: 36px;
+	line-height: 36px;
+	margin: 0px 10px;
+}
+.iss-panel > .tdiv > .title.down {
+	background: url("../img/arrow_d.png") no-repeat right center;
+}
+.iss-panel > .tdiv > .title.up {
+	background: url("../img/arrow_u.png") no-repeat right center;
+}
+.iss-panel > .tdiv > .title > .subtitle {
+	display: inline-block;
+	margin-left: 20px;
+}
+.iss-panel > .wrap {
+	background: #fff;
+}
+.iss-panel > .wrap > div {
+	padding: 10px;
+}
+.iss-panel > .wrap > .footer {
+	border-top: 1px solid #e6ebf5;
+	padding: 6px 10px;
+	text-align: left;
+}
+/*****************************************************************/
+
+/** 卡片 */
+.iss-card {
+	background: #fff;
+}
+.iss-card > .title {
+	font-size: 14px;
+	color: #5a5e66;
+	height: 26px;
+	line-height: 26px;
+}
+.iss-card > .title.down {
+	background: url("../img/arrowd.png") no-repeat right center;
+}
+.iss-card > .title.up {
+	background: url("../img/arrowu.png") no-repeat right center;
+}
+.iss-card > .title > span {
+	padding-left: 20px;
+	background: url("../img/nav.png") no-repeat left center;
+}
+.iss-card > .title > .subtitle {
+	display: inline-block;
+	margin-left: 20px;
+}
+.iss-card > .wrap {
+	border: 1px solid #e6ebf5;
+	background: #f4fbfe;
+}
+.iss-card > .wrap > div {
+	padding: 10px;
+}
+.iss-card > .wrap > .footer {
+	border-top: 1px solid #e6ebf5;
+	padding: 6px 10px;
+	text-align: center;
+}
+/*****************************************************************/
+
+/** 单选 */
+.iss-radio {	
+	height: 20px;
+	line-height: 20px;
+	width: auto;
+	color: #5a5e66;
+	font-size: 14px;
+	display: inline-block;
+}
+.iss-radio > span {	
+	padding-left: 18px;
+	cursor: pointer;
+	background: url("../img/radio.png") no-repeat left 4px;
+}
+.iss-radio > span.no {
+	background: url("../img/radio_no.png") no-repeat left 4px;
+}
+.iss-radio > span.readonly {
+	padding-left: 0px;
+	background: none;
+	cursor: auto;
+}
+.iss-radio > span + span {
+	margin-left: 16px;
+}
+/*****************************************************************/
+
+/** 复选 */
+.iss-checkbox {
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	padding-left: 18px;
+	cursor: pointer;
+	background: url("../img/checkbox.png") no-repeat left 4px;
+}
+.iss-checkbox.readonly {
+	padding-left: 0px;
+	background: none;
+	cursor: auto;
+}
+.iss-checkbox.no {
+	background: url("../img/checkbox_no.png") no-repeat left 4px;
+}
+.iss-checkbox + .iss-checkbox {
+	margin-left: 16px;
+}
+.iss-checkbox.readonly + .iss-checkbox.readonly {
+	margin-left: 0px;
+}
+/*****************************************************************/
+
+/** 标签 */
+.iss-tag {
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #409eff;
+	border: 1px solid #409eff;
+	font-size: 14px;
+	padding: 0px 16px;
+	cursor: pointer;
+	background: #fff url("../img/slcts.png") no-repeat right bottom;
+}
+.iss-tag.readonly {
+	background: none;
+	cursor: auto;
+	color: #5a5e66;
+	padding: 0px;
+	border: 1px solid transparent;
+}
+.iss-tag.no {
+	border: 1px solid #d8dce5;
+	color: #5a5e66;
+	background: #fff url("../img/slcts_h.png") no-repeat right bottom;
+}
+.iss-tag + .iss-tag {
+	margin-left: 16px;
+}
+.iss-tag.readonly + .iss-tag.readonly {
+	margin-left: 0px;
+}
+/*****************************************************************/
+
+/** 日历 */
+.iss-date {
+	position: relative;
+}
+.iss-date > .calc {
+	position: absolute;
+	right: 7px;
+	top: 7px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	background: #fff url("../img/calendar.png") no-repeat center center;
+}
+.iss-date > input {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;	
+	padding: 2px 22px 2px 0px;
+	margin: 0px;
+	overflow: hidden;
+	cursor: pointer;
+	text-indent: 2px;
+	background: #fff;
+}
+.iss-ddate > input:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-ddate.readonly > input {
+	background: transparent;
+	border: 1px solid transparent;
+	cursor: text;
+	padding-right: 0px;
+}
+.iss-ddate.readonly > input:hover {
+	border: 1px solid transparent;
+}
+.iss-ddate.readonly > .calc {
+	background: none;
+}
+.iss-ddate.valid> input {
+	border-color: #f00;
+}
+/*****************************************************************/
+
+/** 开关 */
+.iss-switch {
+	width: 50px;
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	text-align: right;
+	cursor: pointer;
+	background: url("../img/switch_l.png") no-repeat left 5px;
+}
+.iss-switch.readonly {
+	width: auto;
+	background: none;
+	cursor: auto;
+}
+.iss-switch.no {
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	text-align: right;
+	background: url("../img/switch_r.png") no-repeat left 5px;
+}
+.iss-switch.no.readonly {
+	width: auto;
+	background: none;
+}
+.iss-switch:before {
+	content: attr(data-content);
+}
+.iss-switch.no:before {
+	content: attr(data-content);
+}
+/*****************************************************************/
+
+/** 图片 */
+.iss-img {
+	cursor: pointer;
+	color: #5a5e66;
+	font-size: 14px;
+}
+.iss-img > img {
+	margin-right: 6px;
+	width: 40px;
+	height: 40px;
+}
+/*****************************************************************/
+
+/** 链接 */
+.iss-link {
+	font-size: 14px;
+	outline: none;
+	height: 16px;
+	min-height: 16px;
+	width: 94%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: center;
+	padding: 2px 0px;
+	background: transparent;	
+	color: #33b7e5;
+	cursor: pointer;
+	margin: 0px 4px;
+	border: none;	
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.iss-link.underline {
+	border-bottom: 0px solid #33b7e5;
+}
+.iss-link:focus {
+	border: none;
+	border-bottom: 1px solid #33b7e5;
+}
+/*****************************************************************/
+
+/** 按钮 */
+.iss-btn {
+	min-width: 28px;
+	height: 30px;
+	border-radius: 3px;
+	border: none;
+	color: #fff;
+	font-size: 14px;
+	padding-left: 40px;
+	cursor: pointer;
+	text-align: left;
+	padding-right: 14px;
+}
+.iss-btn.small {
+	min-width: 22px;
+	width: 22px;
+	height: 22px;
+	border-radius: 2px;
+	padding: 0px;
+	vertical-align: middle;
+	text-align: center;
+}
+.iss-btn.small + .iss-btn.small {
+	margin-left: 4px;
+}
+.iss-btn.small.append {
+	background: #58b7ff url("../img/add.png") no-repeat center center;
+}
+.iss-btn.small.remove {
+	background: #58b7ff url("../img/delete.png") no-repeat center center;
+}
+.iss-btn.small.update {
+	background: #58b7ff url("../img/modify.png") no-repeat center center;
+}
+.iss-btn.small.view {
+	background: #58b7ff url("../img/inquiry.png") no-repeat center center;
+}
+.iss-btn.small.set {
+	background: #58b7ff url("../img/set.png") no-repeat center center;
+}
+.iss-btn.small.release {
+	background: #58b7ff url("../img/release.png") no-repeat center center;
+}
+.iss-btn.small.cancelrelease {
+	background: #58b7ff url("../img/release_no.png") no-repeat center center;
+}
+.iss-btn.small.common {
+	background: #58b7ff url("../img/common.png") no-repeat center center;
+}
+.iss-btn.small.pass {
+	background: #6abcfa url("../img/pass.png") no-repeat center center;
+}
+.iss-btn.small.nopass {
+	background: #72baef url("../img/nopass.png") no-repeat center center;
+}
+.iss-btn.small.relate {
+	background: #72baef url("../img/relate.png") no-repeat center center;
+}
+.iss-btn.small.relateCancel {
+	background: #72baef url("../img/relateCancel.png") no-repeat center center;
+}
+.iss-btn.small.restart {
+	background: #58b7ff url("../img/restart.png") no-repeat center center;
+}
+.iss-btn.small.pause {
+	background: #58b7ff url("../img/pause.png") no-repeat center center;
+}
+.iss-btn.small:hover {
+	background-color: #f47564;
+}
+.iss-btn.small.readonly {
+	cursor: auto;
+	background-color: #e0e3ea;
+}
+.iss-btn.small.readonly:hover {
+	background-color: #e0e3ea;
+}
+.iss-btn.query {
+	background: #409eff url("../img/inquiry.png") no-repeat 14px center;
+}
+.iss-btn.query:hover {
+	background-color: #3d97f3;
+}
+.iss-btn.query.readonly {
+	cursor: auto;
+	background-color: #b3d8ff;
+}
+.iss-btn.query.readonly:hover {
+	background-color: #b3d8ff;
+}
+.iss-btn.reset {
+	background: #58b7ff url("../img/reset.png") no-repeat 14px center;
+}
+.iss-btn.reset:hover {
+	background-color: #53aef3;
+}
+.iss-btn.reset.readonly {
+	cursor: auto;
+	background-color: #bce2ff;
+}
+.iss-btn.reset.readonly:hover {
+	background-color: #bce2ff;
+}
+.iss-btn.insert {
+	background: #60d6e4 url("../img/add.png") no-repeat 14px center;
+}
+.iss-btn.insert:hover {
+	background-color: #5bccd9;
+}
+.iss-btn.insert.readonly {
+	cursor: auto;
+	background-color: #bfeff4;
+}
+.iss-btn.insert.readonly:hover {
+	background-color: #bfeff4;
+}
+.iss-btn.pass {
+	background: #6abcfa url("../img/pass.png") no-repeat 14px center;
+}
+.iss-btn.pass:hover {
+	background-color: #67b4ee;
+}
+.iss-btn.pass.readonly {
+	cursor: auto;
+	background-color: #67b4ee;
+}
+.iss-btn.pass.readonly:hover {
+	background-color: #67b4ee;
+}
+.iss-btn.nopass {
+	background: #72baef url("../img/nopass.png") no-repeat 14px center;
+}
+.iss-btn.nopass:hover {
+	background-color: #6cb0e2;
+}
+.iss-btn.nopass.readonly {
+	cursor: auto;
+	background-color: #6cb0e2;
+}
+.iss-btn.nopass.readonly:hover {
+	background-color: #6cb0e2;
+}
+.iss-btn.save {
+	background: #46d49d url("../img/save.png") no-repeat 14px center;
+}
+.iss-btn.save:hover {
+	background-color: #43c894;
+}
+.iss-btn.save.readonly {
+	cursor: auto;
+	background-color: #b5eed8;
+}
+.iss-btn.save.readonly:hover {
+	background-color: #b5eed8;
+}
+.iss-btn.submit {
+	background: #7da5ee url("../img/submit.png") no-repeat 14px center;
+}
+.iss-btn.submit:hover {
+	background-color: #789de2;
+}
+.iss-btn.submit.readonly {
+	cursor: auto;
+	background-color: #cbdbf8;
+}
+.iss-btn.submit.readonly:hover {
+	background-color: #cbdbf8;
+}
+.iss-btn.delete {
+	background: #69c9ed url("../img/delete.png") no-repeat 14px center;
+}
+.iss-btn.delete:hover {
+	background-color: #63c0e2;
+}
+.iss-btn.delete.readonly {
+	cursor: auto;
+	background-color: #c3e9f8;
+}
+.iss-btn.delete.readonly:hover {
+	background-color: #c3e9f8;
+}
+.iss-btn.modify {
+	background: #96a6f8 url("../img/modify.png") no-repeat 14px center;
+}
+.iss-btn.modify:hover {
+	background-color: #8e9deb;
+}
+.iss-btn.modify.readonly {
+	cursor: auto;
+	background-color: #d5dbfc;
+}
+.iss-btn.modify.readonly:hover {
+	background-color: #d5dbfc;
+}
+.iss-btn.base {
+	background: #41cdbb url("../img/public.png") no-repeat 14px center;
+}
+.iss-btn.base:hover {
+	background-color: #3dc1b0;
+}
+.iss-btn.base.readonly {
+	cursor: auto;
+	background-color: #b3ebe4;
+}
+.iss-btn.base.readonly:hover {
+	background-color: #b3ebe4;
+}
+.iss-btn + .iss-btn {
+	margin-left: 10px;
+}
+/*****************************************************************/
+
+/** 输入框 */
+.iss-input {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 16px;
+	min-height: 16px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;
+	padding: 2px 0px;
+	margin: 0px;
+	overflow: hidden;
+	text-indent: 2px;
+	background: #fff;	
+}
+.iss-input:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-input:focus {
+	border: 1px solid #409eff;
+}
+.iss-input.readonly {
+	background: transparent;
+	border: 1px solid transparent;
+}
+.iss-input.readonly:hover {
+	border: 1px solid transparent;
+}
+.iss-input.toleft {
+	text-align: left;
+}
+.iss-input.toright {
+	text-align: right;
+}
+.iss-input.tocenter {
+	text-align: center;
+}
+.iss-input.readonly:focus {
+	border: 1px solid transparent;
+}
+input.iss-input {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+textarea.iss-input:focus {
+	vertical-align: top;
+	text-align: left;
+}
+textarea.iss-input.readonly:focus {
+	vertical-align: middle;
+	text-align: left;
+}
+.iss-input.valid {
+	border-color: #f00;
+}
+/*****************************************************************/
+
+/** 下拉 */
+.iss-select-wrap  {
+	z-index: 1000000000;
+	position: absolute;
+	border: 1px solid #d8dce5;
+	padding: 0px;
+	margin-top: 8px;
+	background: #fff;
+	display: none;
+	left: 0px;
+	top: 0px;
+}
+.iss-select-wrap > .wrap, .iss-select > .wrap {
+	overflow: auto;
+	display: none;
+}
+.iss-select-wrap > .wrap.up:before {
+	position: absolute;
+	top: -6px;
+	left: 30px;
+	content: " ";
+	display: inline-block;
+	width: 8px;
+	height: 6px;
+	background: url("../img/slct_arrow.png") no-repeat center center;
+}
+.iss-select-wrap > .wrap.down:before {
+	position: absolute;
+	bottom: -6px;
+	left: 30px;
+	content: " ";
+	display: inline-block;
+	width: 8px;
+	height: 6px;
+	background: url("../img/slct_arrow_down.png") no-repeat center center;
+}
+.iss-select-wrap > .wrap > p {
+	white-space: nowrap;
+	margin: 0px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #5a5e66;
+	text-align: left;
+	vertical-align: middle;
+	padding: 2px 14px 2px 16px;
+	cursor: pointer;
+}
+.iss-select-wrap > .wrap > p.selected {
+	background: url("../img/tick.png") no-repeat 2px center;
+}
+.iss-select-wrap > .wrap > p:hover {
+	background: #f5f7fa;
+	color: #409eff;
+}
+.iss-select-wrap > .wrap > p.selected:hover {
+	background: #f5f7fa url("../img/tick.png") no-repeat 2px center;
+}
+.iss-select {
+	position: relative;
+}
+.iss-select > .down {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	background: #fff url("../img/arrowd.png") no-repeat center center;
+}
+.iss-select > .up {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	background: #fff url("../img/arrowu.png") no-repeat center center;
+}
+.iss-select > input {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;
+	padding: 2px 22px 2px 0px;
+	margin: 0px;
+	cursor: pointer;
+	overflow: hidden;
+	text-indent: 2px;
+	background: #fff;
+}
+.iss-select > input:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-select > input:focus {
+	border: 1px solid #409eff;
+}
+.iss-select.readonly > input {
+	background: transparent;
+	border: 1px solid transparent;
+	cursor: text;
+	padding-right: 0px;
+}
+.iss-select.readonly > input:hover {
+	border: 1px solid transparent;
+}
+.iss-select.readonly > input:focus {
+	border: 1px solid transparent;
+}
+.iss-select.readonly > .down {
+	background: none;
+	cursor: text;
+}
+.iss-select.readonly > .up {
+	background: none;
+	cursor: text;
+}
+.iss-list .iss-select.readonly > input {
+	text-align: center;
+}
+.iss-select.valid > input {
+	border-color: #f00;
+}
+/*****************************************************************/
+
+/** 多级联动 */
+.iss-cascade-wrap  {
+	z-index: 1000000000;
+	position: absolute;
+	border: 1px solid #eee;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 2px #eee;
+	padding: 0px;
+	margin-top: 8px;
+	background: #fff;
+	display: none;
+	left: 0px;
+	top: 0px;
+	padding: 10px 10px 0px 10px;
+}
+.iss-cascade-wrap > .wrap, .iss-cascade > .wrap {
+	overflow: display;
+	display: none;
+	min-width: 400px;
+}
+.iss-cascade-wrap > .wrap.up:before {
+	position: absolute;
+	top: -6px;
+	left: 30px;
+	content: " ";
+	display: inline-block;
+	width: 8px;
+	height: 6px;
+	background: url("../img/slct_arrow.png") no-repeat center center;
+}
+.iss-cascade-wrap > .wrap.down:before {
+	position: absolute;
+	bottom: -6px;
+	left: 30px;
+	content: " ";
+	display: inline-block;
+	width: 8px;
+	height: 6px;
+	background: url("../img/slct_arrow_down.png") no-repeat center center;
+}
+.iss-cascade-wrap > .wrap > span {
+	color: #20a2ff;
+	height: 15px;
+	width: 15px;
+	line-height: 14px;
+	text-align: center;
+	border-radius: 3px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: 1px solid #fff;
+	cursor: pointer;
+}
+.iss-cascade-wrap > .wrap > span:hover {
+	border: 1px solid #20a2ff;
+}
+.iss-cascade-wrap > .wrap > ul {
+	width: 100%;
+	height: 34px;
+	display: inline-block;
+	border-bottom: 1px solid #20a2ff;
+	padding: 0px;
+	margin: 0px;
+}
+.iss-cascade-wrap > .wrap > ul > li {
+	display: inline-block;
+	line-height: 34px;
+	font-size: 15px;
+	color: #888;
+	min-width: 60px;
+	text-align: center;
+	cursor: pointer;
+}
+.iss-cascade-wrap > .wrap > ul > li.active {
+	background-color: #20a2ff;
+	color: #fff;
+}
+.iss-cascade-wrap > .wrap > ul > li.active:hover {
+	color: #fff;
+}
+.iss-cascade-wrap > .wrap > ul > li:hover {
+	color: #20a2ff;
+}
+.iss-cascade-wrap > .wrap > .content > div {
+	display: none;
+}
+.iss-cascade-wrap > .wrap > .content > div > a {
+	height: 30px;
+	display: inline-block;
+	color: #666;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 13px;
+	overflow: hidden;
+	border-radius: 5px;
+	padding: 2px 2px 2px 16px;
+	min-width: 60px;
+	text-align: left;
+}
+.iss-cascade-wrap > .wrap > .content > div > a.active {
+	background: url("../img/tick.png") no-repeat 2px center;
+	color: #20a2ff;
+}
+.iss-cascade-wrap > .wrap > .content > div > a:hover {
+	color: #20a2ff;
+}
+.iss-cascade-wrap > .wrap > p {
+	white-space: nowrap;
+	margin: 0px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #5a5e66;
+	text-align: left;
+	vertical-align: middle;
+	padding: 2px 14px 2px 16px;
+	cursor: pointer;
+}
+.iss-cascade-wrap > .wrap > p.selected {
+	background: url("../img/tick.png") no-repeat 2px center;
+}
+.iss-cascade-wrap > .wrap > p:hover {
+	background: #f5f7fa;
+	color: #409eff;
+}
+.iss-cascade-wrap > .wrap > p.selected:hover {
+	background: #f5f7fa url("../img/tick.png") no-repeat 2px center;
+}
+.iss-cascade {
+	position: relative;
+}
+.iss-cascade > .location {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	background: #fff url("../img/location.png") no-repeat center center;
+}
+.iss-cascade > input {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;
+	padding: 2px 22px 2px 0px;
+	margin: 0px;
+	cursor: pointer;
+	overflow: hidden;
+	text-indent: 2px;
+	background: #fff;
+}
+.iss-cascade > input:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-cascade > input:focus {
+	border: 1px solid #409eff;
+}
+.iss-cascade.readonly > input {
+	background: transparent;
+	border: 1px solid transparent;
+	cursor: text;
+	padding-right: 0px;
+}
+.iss-cascade.readonly > input:hover {
+	border: 1px solid transparent;
+}
+.iss-cascade.readonly > input:focus {
+	border: 1px solid transparent;
+}
+.iss-cascade.readonly > .location {
+	background: none;
+	cursor: text;
+}
+.iss-list .iss-cascade.readonly > input {
+	text-align: center;
+}
+.iss-cascade.valid > input {
+	border-color: #f00;
+}
+/*****************************************************************/
+
+/** 表单 */
+.iss-form table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+.iss-form tr td:nth-child(odd) {
+	text-align: right;
+	color: #5a5e66;
+	font-size: 14px;
+}
+.iss-form tr td:nth-child(even) {
+	text-align: left;
+	font-size: 14px;
+	color: #5a5e66;
+}
+.iss-form tr td:nth-child(odd):after {
+	content: "：";
+}
+.iss-form td.must:before {
+	color: #f00;
+	content: "*";
+	display: inline-block;
+	height: 22px;
+	line-height: 22px;
+	vertical-align: middle;
+	margin-right: 4px;
+	margin-top: 2px;
+}
+.iss-form .iss-select > input, .iss-form .iss-date > input, .iss-form .iss-cascade > input {
+	width: 138px;
+}
+.iss-form .iss-input {
+	width: 160px;
+}
+/*****************************************************************/
+
+/** 列表 */
+.iss-list {
+	background: #fff;
+	font-size: 12px;
+	color: #666;
+	position: relative;
+}
+.iss-list table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+}
+.iss-list .head-wrapper {
+	position: absolute;
+	top: 0px;
+	z-index: 10;
+	background: #fff;
+}
+.iss-list th {
+	color: #959ba7;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px 2px;
+	line-height: 30px;
+	border-bottom: 1px solid #0079c2;
+}
+.iss-list.border th {
+	border: 1px solid #e1e1e1;
+	background: #fff;
+}
+.iss-list th.must:before {
+	color: #f00;
+	content: "*";
+	font-size: 16px;
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	vertical-align: middle;
+	margin-right: 4px;
+	margin-top: 2px;
+}
+.iss-list th.order {
+	cursor: pointer;
+}
+.iss-list th.order:after {
+	color: #f00;
+	content: "";
+	background: url("../img/order.png") no-repeat center center;
+	font-size: 16px;
+	display: inline-block;
+	height: 10px;
+	width: 10px;
+	margin-left: 4px;
+}
+.iss-list th.order.asc:after {
+	background: url("../img/asc.png") no-repeat center center;
+}
+.iss-list th.order.desc:after {
+	background: url("../img/desc.png") no-repeat center center;
+}
+.iss-list th.index {
+	width: 40px;
+	color: #20a0ff;
+}
+.iss-list th.index.selector.more {
+	cursor: pointer;
+}
+.iss-list td {
+	overflow: hidden;
+	line-height: 30px;
+	font-size: 14px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 2px 2px;
+	border: none;
+	border-bottom: 1px solid #e1e1e1;
+}
+.iss-list.border td {
+	border: 1px solid #e1e1e1;
+}
+.iss-list td:nth-child(1).selected {
+	background: transparent url("../img/select.png") no-repeat left top;
+}
+.iss-list tbody tr:nth-child(even) {
+	background: #fff;
+}
+.iss-list tbody tr:nth-child(odd) {
+	background: #f5f8fa;
+}
+.iss-list tbody tr:hover {
+	background: #dcf0fb;
+}
+.iss-list .body-wrapper {
+	/* overflow: auto; */
+}
+.iss-list .body-wrapper textarea {
+	font-size: 14px;
+	color: #666;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: center;
+	padding: 2px 0px;
+	margin: 0px;
+	overflow: hidden;
+	text-indent: 2px;
+	background: transparent;
+}
+.iss-list .body-wrapper textarea:focus {
+	border: 1px solid #e1e1e1;
+	background: #fff;
+	vertical-align: top;
+	text-align: left;
+}
+.iss-list .body-wrapper textarea.readonly:focus {
+	border: 1px solid transparent;
+	background: transparent;
+	vertical-align: middle;
+	text-align: center;
+}
+.iss-list.border tfoot td {
+	border-top: none;
+}
+.iss-list tfoot .pagebtn {
+	text-align: left;
+	line-height: 20px;
+	color: #5a5e66;
+	font-size: 14px;
+	padding: 4px;
+}
+.iss-list tfoot .pagebtn .page {
+	border: none;
+	width: 28px;
+	height: 20px;
+	cursor: pointer;
+	color: #333;
+	font-size: 14px;
+	vertical-align: middle;
+	text-align: center;
+	background: none;
+	outline: none;
+}
+.iss-list tfoot .pagebtn .page.pageno {
+	color: #20a0ff;
+	font-weight: bold;
+	font-size: 16px;
+}
+.iss-list tfoot .pagebtn .page:hover {
+	color: #20a0ff;
+}
+.iss-list tfoot .pagebtn .page.first {
+	margin-left: 20px;
+	background: transparent url("../img/arrowl.png") no-repeat center center;
+}
+.iss-list tfoot .pagebtn .page.first:hover {
+	background: transparent url("../img/arrowl_h.png") no-repeat center center;
+}
+.iss-list tfoot .pagebtn .page.last {
+	margin-right: 20px;
+	background: transparent url("../img/arrowr.png") no-repeat center center;
+}
+.iss-list tfoot .pagebtn .page.last:hover {
+	background: transparent url("../img/arrowr_h.png") no-repeat center center;
+}
+.iss-list tfoot .pagebtn .gopage {
+	width: 30px;
+	height: 14px;
+	outline: none;
+	font-size: 12px;
+	padding: 0px 2px;
+	border: 1px solid #e6ebf5;
+}
+.iss-list tfoot .pagebtn .gopage:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-list tfoot .pagebtn .gopage:focus {
+	border: 1px solid #409eff;
+}
+.iss-list .toleft {
+	text-align: left;
+}
+.iss-list .toright {
+	text-align: right;
+}
+.iss-list .tocenter {
+	text-align: center;
+}
+.iss-list .iss-input.readonly {
+	text-align: center;
+}
+/*****************************************************************/
+
+/** 选项卡 */
+.iss-tabs {
+}
+.iss-tabs > .tabs {
+	position: relative;
+}
+.iss-tabs  > .tabs > div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+.iss-tabs  > .tabs > hr {
+	width: 100%;
+	height: 1px;
+	border: none;
+	background: #d8dce5;
+	position: absolute;
+	top: 36px;
+	left: 0px;
+	margin: 0px;
+	z-index: 9;
+}
+.iss-tabs > .tabs > div > span {
+	border: 1px solid #d8dce5;
+	border-left: none;
+	height: 26px;
+	min-width: 40px;
+	line-height: 26px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	padding: 4px 20px 4px 26px;
+	cursor: pointer;
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+	background: #fff;
+}
+.iss-tabs > .tabs > div > span:first-child {
+	border-left: 1px solid #d8dce5;
+}
+.iss-tabs > .tabs > div > span.active {
+	color: #20a0ff;
+	border-top: 3px solid #20a0ff;
+	border-bottom: none;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.iss-tabs > .tabs > div > span.icon:before {
+	position: absolute;
+	top: 9px;
+	left: 8px;
+	content: " ";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url("../img/tabs_ico.png") no-repeat center center;
+}
+.iss-tabs > .tabs > div > span.home:before {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	content: " ";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("../img/tabs_home.png") no-repeat center center;
+}
+.iss-tabs > .tabs > div > span.close:after {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	content: " ";
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background: url("../img/close.png") no-repeat center center;
+}
+.iss-tabs > .tabs > div > span:hover {
+	color: #20a0ff;
+}
+.iss-tabs > .tabs > div > span.icon:hover:before, .iss-tabs > .tabs > div > span.icon.active:before {
+	background: url("../img/tabs_ico_h.png") no-repeat center center;
+}
+.iss-tabs > .tabs > div > span.home:hover:before, .iss-tabs > .tabs > div > span.home.active:before {
+	background: url("../img/tabs_home_h.png") no-repeat center center;
+}
+.iss-tabs > .tabs > div > span.close:hover:after, .iss-tabs > .tabs > div > span.close.active:after {
+	background: url("../img/close_h.png") no-repeat center center;
+}
+.iss-tabs > .cnts {
+	padding: 40px 10px 10px 10px;
+}
+.iss-tabs > .cnts > div {
+	display: none;
+}
+.iss-tabs > .cnts > div.active {
+	display: block;
+}
+/*****************************************************************/
+
+/** 组件间距 */
+.iss-form + .iss-list {
+	margin-top: 10px;
+}
+.iss-card + .iss-list {
+	margin-top: 10px;
+}
+.iss-panel + .iss-card {
+	margin-top: 10px;
+}
+.iss-panel + .iss-panel {
+	margin-top: 10px;
+}
+.iss-card + .iss-card {
+	margin-top: 10px;
+}
+.iss-tabs + .iss-tabs {
+	margin-top: 10px;
+}
+/*****************************************************************/
+
+/** 省市区三级联动方案二 */
+.iss-city {
+	position: relative;
+}
+.iss-city > .location {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	background: #fff url("../img/location.png") no-repeat center center;
+}
+.iss-city > .iss-city:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-city > .iss-city:focus {
+	border: 1px solid #409eff;
+}
+.iss-city > .iss-city.readonly {
+	background: transparent;
+	border: 1px solid transparent;
+}
+.iss-city > .iss-city.readonly:hover {
+	border: 1px solid transparent;
+}
+.iss-city > .iss-city.readonly:focus {
+	border: 1px solid transparent;
+}
+.iss-city > .iss-city {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;
+	padding: 2px 0px;
+	margin: 0px;
+	overflow: hidden;
+	cursor: pointer;
+	text-indent: 2px;
+	background: #fff;
+}
+/*****************************************************************/
+
+/** 保险 */
+.iss-iinsurance {
+	position: relative;
+}
+.iss-iinsurance>.down {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	background: #fff url("../img/arrowd.png") no-repeat center center;
+}
+.iss-iinsurance>.up {
+	position: absolute;
+	right: 7px;
+	top: 6px;
+	z-index: 10;
+	width: 12px;
+	height: 12px;
+	background: #fff url("../img/arrowu.png") no-repeat center center;
+}
+.iss-iinsurance>.iss-insurance {
+	font-size: 14px;
+	color: #5a5e66;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	outline: none;
+	height: 18px;
+	width: 99.5%;
+	resize:none;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: left;
+	padding: 2px 0px;
+	margin: 0px;
+	overflow: hidden;
+	cursor: pointer;
+	text-indent: 2px;
+	background: #fff;
+}
+.iss-iinsurance > .iss-insurance:hover {
+	border: 1px solid #b4bccc;
+}
+.iss-iinsurance > .iss-insurance:focus {
+	border: 1px solid #409eff;
+}
+.iss-iinsurance > .iss-insurance.readonly {
+	background: transparent;
+	border: 1px solid transparent;
+}
+.iss-iinsurance > .iss-insurance.readonly:hover {
+	border: 1px solid transparent;
+}
+.iss-iinsurance > .iss-insurance.readonly:focus {
+	border: 1px solid transparent;
+}
+.iss-iinsurance > .wrap:before {
+	position: absolute;
+	top: -6px;
+	left: 30px;
+	content: " ";
+	display: inline-block;
+	width: 8px;
+	height: 6px;
+	background: url("../img/slct_arrow.png") no-repeat center center;
+}
+.insuranceList {
+	box-shadow: 0 0 1px 1px #ddd;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	color: #666;
+	padding: 10px 10px 0 0;
+	position: absolute;
+	top: 32px;
+	left: 0;
+	background: #fff;
+	display: none;
+	border-radius:5px;
+}
+
+.insuranceList .typeList,.son{
+	float: left;
+}
+.insuranceList .father .typeList{
+	height: 25px;
+	width: 70px;
+	text-align: center;
+	font: normal small-caps bold 15px/25px "microsoft yahei";
+	margin: 7px 10px;
+	position: relative;
+	cursor: pointer;
+}
+.insuranceList .father .typeList span{
+	position: absolute;
+	display: inline-block;
+	top: 0;
+	left: 80px;
+	width: 1px;
+	height: 25px;
+	background-color: #999;
+	
+}
+.insuranceList .father .son{
+	height: 20px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+.insuranceList .father .son:hover{
+	color: dodgerblue
+}
+.insuranceList .father{
+	width: 400px;
+	float: left;
+	margin: 5px 0;
+}
+.insuranceList .active {
+	color: #fff;
+	background-color: dodgerblue;
+	display: inline-block;
+	width: 50px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 3px;
+}
+.father ._active {
+	color: dodgerblue;
+}
+.father ._active {
+	color: dodgerblue;
+}
+/*****************************************************************/
+
+/** 穿梭表 */
+.iss-shuttle{
+	width: 530px;
+	height: 270px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.iss-shuttle .source{
+	width: 225px;
+	height: 268px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+	float: left;
+}
+.iss-shuttle .to{
+	width: 225px;
+	height: 268px;
+	border: 1px solid #dcdcdc;
+	border-radius: 5px;
+	float: right;
+}
+.iss-shuttle .sourceTitle{
+	height: 44px;
+	width: 100%;
+	border-bottom: 1px solid #dcdcdc;
+	line-height: 44px;
+	text-align: center;
+	color: #5a5e66;
+	font-weight: bold;
+	font-size: 14px;
+}
+.iss-shuttle .toTitle{
+	height: 44px;
+	width: 100%;
+	border-bottom: 1px solid #dcdcdc;
+	line-height: 44px;
+	text-align: center;
+	color: #5a5e66;
+	font-weight: bold;
+	font-size: 14px;
+}
+.iss-shuttle .sourcedata{
+	height: 223px;
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+	overflow: auto;
+	color: #5a5e66;
+	font-size: 14px;
+}
+.iss-shuttle .todata{
+	height: 223px;
+	width: 100%;
+	border-radius: 0 0 5px 5px;
+	overflow: auto;
+	color: #5a5e66;
+	font-size: 14px;
+}
+.iss-shuttle .distance{
+	height: 40px;
+	margin-left: 20px;
+	line-height: 40px;
+	cursor: pointer;
+}
+.iss-shuttle .grey{
+	color:#999;
+}
+.iss-shuttle .i-no {
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	padding-left: 18px;
+	cursor: pointer;
+	margin-right: 8px;
+	background: url(../img/checkbox_no.png) no-repeat left 4px;
+	vertical-align: sub;
+}
+.iss-shuttle .i-yes{
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	padding-left: 18px;
+	cursor: pointer;
+	vertical-align: sub;
+	margin-right: 8px;
+	background: url(../img/checkbox.png) no-repeat left 4px;
+}
+
+.iss-shuttle .i-grey{
+	width: auto;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #5a5e66;
+	font-size: 14px;
+	padding-left: 18px;
+	cursor: pointer;
+	vertical-align: sub;
+	margin-right: 8px;
+	background: url(../img/checkbox_no_grey.png) no-repeat left 4px;
+}
+
+.iss-shuttle .btnCtrl{
+	float: left;
+	padding: 90px 10px 0 15px;
+}
+.iss-shuttle .btnCtrl span{
+	display:block;
+	width:43px;
+	height:28px;
+	text-align: center;
+	position: relative;
+	cursor:pointer;
+	border:1px solid #d9d9d9;
+	border-radius:4px;
+	background:#f3f3f3 url("../img/iss-shuttle.png") no-repeat 17px 6px;
+	transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-webkit-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+}
+.iss-shuttle .btnCtrl .activeR{
+	display:block;
+	width:43px;
+	height:28px;
+	text-align: center;
+	position: relative;
+	cursor:pointer;
+	border:1px solid #d9d9d9;
+	border-radius:4px;
+	background:#20a2ff url("../img/iss-shuttle.png") no-repeat 17px -19px;
+	transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-webkit-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+}
+.iss-shuttle .btnCtrl .activeL{
+	display:block;
+	width:43px;
+	height:28px;
+	text-align: center;
+	position: relative;
+	cursor:pointer;
+	border:1px solid #d9d9d9;
+	border-radius:4px;
+	background:#20a2ff url("../img/iss-shuttle.png") no-repeat 17px -75px !important;
+	transition: background-color 0.3s linear;
+	-moz-transition: background-color 0.3s linear;
+	-webkit-transition: background-color 0.3s linear;
+	-o-transition: background-color 0.3s linear;
+}
+.iss-shuttle .greyColor{
+	color:#c1c1c1;
+}
+.iss-shuttle .btnCtrl .btn-torigh{
+	background:#f3f3f3 url("../img/iss-shuttle.png") no-repeat 17px 0px;
+}
+.iss-shuttle .btnCtrl .btn-toleft{
+	background:#f3f3f3 url("../img/iss-shuttle.png") no-repeat 17px -50px;
+	margin-top: 25px;
+}
+.iss-shuttle .btnCtrl span:hover{
+	border:1px solid #3dadf2;background-color:#20a2ff;
+}
+.iss-shuttle .btnCtrl .btn-toright:hover{
+	background:#20a2ff url("../img/iss-shuttle.png") no-repeat 17px -19px;
+}
+.iss-shuttle .btnCtrl .btn-toleft:hover{
+	background:#20a2ff url("../img/iss-shuttle.png") no-repeat 17px -75px;
+	margin-top: 25px;
+}
+/*****************************************************************/
+

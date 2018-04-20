@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>IESCP开发平台演示系统</title>
+	<link type="image/x-icon" rel="icon" href="favicon.ico" mce_href="favicon.ico">
+	<link type="image/x-icon" rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico">
+	<link type="image/x-icon" rel="Bookmark" href="favicon.ico" mce_href="favicon.ico"/>
+</head>
+
+<body class="main">
+	<div class="top">
+		<div class="userinfo">
+			<div class="photo" title="个人资料"></div>
+			<div class="info">
+				<div id="issDpt" class="dpt"></div>
+				<div><span id="issUser" class="user"></span><div class="opr"><span id="msg" class="msg" title="系统消息">&nbsp;</span><span id="help" class="help" title="帮助文档">&nbsp;</span><span id="logout" class="exit" title="退出系统">&nbsp;</span></div></div>
+			</div>
+		</div>
+		<div class="logo" title="IESCP开发平台演示系统"></div>
+	</div>
+	<div id="mmenu" class="mmenu">
+		<div id="menu" class="menu">
+			<div class="toright" onselectstart="return false;" title="点击显示更多菜单">&nbsp;</div>
+			<div class="toleft" onselectstart="return false;" title="点击显示更多菜单">&nbsp;</div>
+		</div>
+	</div>
+	<div class="pc"><ul id="path" class="path"></ul><span class="sysdate"></span></div>
+	<div class="ccontain">
+		<div class="contain" id="contain"></div>
+		<div class="copyright" id="copyright">
+			版权所有 &copy; 软通动力信息技术有限公司&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2013 iSoftStone Holdings Limited. All rights reserved.
+		</div>
+	</div>
+	
+	<!--<script type="text/javascript" src="./userinfo.js"></script>
+	<script type="text/javascript" src="./version.js"></script>-->
+	<script type="text/javascript" src="./core/js/sea-3.0.0.js" id="seajsnode"></script>
+	<link rel="stylesheet" href="./core/theme/default/css/iss-main.css">
+	<link rel="stylesheet" href="./core/theme/default/css/iss-component.css">
+	<link rel="stylesheet" href="./core/theme/default/css/normalize.css">
+
+
+	<script type="text/javascript">
+		
+		seajs.config( {    
+		    // 路径配置
+		    alias: {
+		    	'iss-address': './address.js',
+                'CSSctrl': './static/css/CSSctrl.css',
+		    	'cus_abroad': './static/js/health/abroad/cus_abroad.js',
+		    	'card': './static/js/health/card/card.js',
+		    	'cus_card': './static/js/health/card/cus_card.js',
+		    	'cus_consult': './static/js/health/consult/cus_consult.js',
+		    	'contract': './static/js/health/contract/contract.js',
+		    	'cus-service': './static/js/health/cus/cus_ser.js',
+		    	'service-dpt': './static/js/health/dpt/mgt_dpt.js',
+		    	'hospital': './static/js/health/hospital/hospital.js',
+		    	'cus_inquiry': './static/js/health/inquiry/cus_inquiry.js',
+		    	'cus_inspect': './static/js/health/inspect/cus_inspect.js',
+		    	'project': './static/js/health/project/project.js',
+		    	'cus-register': './static/js/health/register/cus_register.js',
+		    	'cus-second': './static/js/health/second/cus_second.js',
+		    	'cus_stricken_gp': './static/js/health/strickengp/cus_stricken_gp.js',
+		    	'doctor': './static/js/health/doctor/doctor.js',
+
+				/* 组件DEMO */
+				'demo_index': './static/js/demo_index.js',
+				'components_demo': './static/js/health/components_demo.js',
+				'docsify': './page/docsify/lib/docsify.js',
+				'vuecss': './page/docsify/lib/themes/vue.css',
+				'darkcss': './page/docsify/lib/themes/dark.css',
+				'bublecss': './page/docsify/lib/themes/buble.css'
+		    },			    
+		    map: [
+		      [ /^(.*\.(?:js))(.*)$/i, '$1?'],
+		      [ /^(.*\.(?:css))(.*)$/i, '$1?']
+		    ]
+		} );
+
+	
+		//加载入口模块
+		seajs.use( [ "issapi" ,"layer-css", "ztree-css" ], function(main) {
+		
+			/*if (issapi.isValid(issUser.dptCnm)) {
+				$("#issDpt").text(issUser.dptCnm);
+			}
+			if (issapi.isValid(issUser.opCnm)) {
+				$("#issUser").text(issUser.opCnm);
+			}*/
+			main.init();
+			
+		} );
+			
+	</script>
+</body>
+
+</html>

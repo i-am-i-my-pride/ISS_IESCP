@@ -1,0 +1,126 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="洁牙服务记录管理">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">用户姓名</td><td><input is="iss-input" v-model="filter.CUserName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">诊所名称</td><td><input is="iss-input" v-model="filter.CClName" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号</td><td><input is="iss-input" v-model="filter.CPhone" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">医生名称</td><td><input is="iss-input" v-model="filter.CDoctName" vtype="text" range="[0,20]" /></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">预约状态</td><td><input is="iss-select" :datasource="dict.teethStatus" v-model="filter.CStatus" /></td>
+					<td style="width: 120px;">预约时间</td><td><input is="iss-date" datefmt="yyyy-MM-dd" v-model="filter.TApptTime" /></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">卡号</td><td><input is="iss-input" v-model="filter.CCardNo" vtype="text" range="[1,30]"/></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th class="order" orderBy="CUserName">用户姓名</th>
+						<th class="order" orderBy="CPhone">手机号</th>
+						<th class="order" orderBy="CClName">诊所名称</th>
+						<th class="order" orderBy="CDoctName">医生名称</th>
+						<th class="order" orderBy="CClsName">科目名称</th>
+						<th class="order" orderBy="COutProdName">产品名称</th>
+						<th class="order" orderBy="CCardNo">卡号</th>
+						<th class="order" orderBy="NTotalNum">总次数</th>
+						<th class="order" orderBy="NCurNum">剩余次数</th>
+						<th class="order" orderBy="TApptTime">预约时间</th>
+						<th class="order" orderBy="TCancTime">销卡时间</th>
+						<th class="order" orderBy="CStatus">预约状态</th>
+						<th class="order" orderBy="CRemark">备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) of rowsData">
+						<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+						<td><input is="iss-input" v-model="row.CUserName"/></td>
+						<td><input is="iss-input" v-model="row.CPhone"/></td>
+						<td><input is="iss-input" v-model="row.CClName"/></td>
+						<td><input is="iss-input" v-model="row.CDoctName"/></td>
+						<td><input is="iss-input" v-model="row.CClsName"/></td>
+						<td><input is="iss-input" v-model="row.COutProdName"/></td>
+						<td><input is="iss-input" v-model="row.CCardNo"/></td>
+						<td><input is="iss-input" v-model="row.NTotalNum"/></td>
+						<td><input is="iss-input" v-model="row.NCurNum"/></td>
+						<td><input is="iss-input" v-model="row.TApptTime"/></td>
+						<td><input is="iss-input" v-model="row.TCancTime"/></td>
+						<td><input is="iss-select" :datasource="dict.teethStatus" v-model="row.CStatus"/></td>
+						<td><input is="iss-input" v-model="row.CRemark"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 100px;"></col>
+					</colgroup>
+					<tr>
+							<td class="must">用户姓名</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CUserName"/></td>
+							<td class="must">手机号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CPhone"/></td>
+						</tr>
+						<tr>
+							<td class="must">诊所名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CClName"/></td>
+							<td class="must">医生名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CDoctName"/></td>
+						</tr>
+						<tr>
+							<td class="must">科目名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CClsName"/></td>
+							<td class="must">产品名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.COutProdName"/></td>
+						</tr>
+						<tr>
+							<td class="must">卡号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CCardNo"/></td>
+							<td class="must">总次数</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.NTotalNum"/></td>
+						</tr>
+						<tr>
+							<td class="must">剩余次数</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.NCurNum"/></td>
+							<td class="must">预约时间</td>
+							<td><input is="iss-date" class="must" v-model="model.tmpl.TApptTime"/></td>
+						</tr>
+						<tr>
+							<td class="must">销卡时间</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.TCancTime"/></td>
+							<td class="must">预约状态</td>
+							<td><input is="iss-select" :datasource="dict.teethStatus" class="must" v-model="model.tmpl.CStatus"/></td>
+						</tr>
+						<tr>
+							<td class="must">备注</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CRemark"/></td>
+			            </tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="更新预约" @click="getPreOrderInfo()"/>
+			<input is="iss-btn" type="base" value="销卡同步" @click="getPinCardInfo()"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus_card","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

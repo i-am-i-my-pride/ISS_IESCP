@@ -1,0 +1,97 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="洁牙服务卡管理">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">产品名称</td>
+					<td><input is="iss-input" v-model="filter.COutProdName" vtype="text" range="[0,20]" /></td>
+					<td style="width: 120px;">卡号</td>
+					<td><input is="iss-input" v-model="filter.CCardNo" vtype="text" range="[0,20]" /></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">渠道名称</td>
+					<td><input is="iss-input" v-model="filter.CChlName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">创建时间</td>
+					<td><input is="iss-date" datefmt="yyyy-MM-dd" v-model="filter.TCrtTm" /></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th rowspan="2" class="index selector more">全选</th>
+						<th rowspan="2" class="order" orderBy="COutProdName">产品名称</th>
+						<th rowspan="2" class="order" orderBy="CCardNo">卡券编号</th>
+						<th rowspan="2" class="order" orderBy="CChlName">渠道名称</th>
+						<th rowspan="2" class="order" orderBy="TCrtTm">创建时间</th>
+						<th colspan="2" >有效期</th>
+						<!--<th rowspan="2" class="order" orderBy="CCheckCde">验证码</th>-->
+						<th rowspan="2" class="order" orderBy="CStatus">状态</th>
+					</tr>
+					<tr><th class="order" orderBy="TBgnTime">起始</th><th class="order" orderBy="TEndTime">截止</th></tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td><input is="iss-input" v-model="row.COutProdName"/></td>
+						<td><input is="iss-input" v-model="row.CCardNo"/></td>
+						<td><input is="iss-input" v-model="row.CChlName"/></td>
+						<td><input is="iss-input" v-model="row.TCrtTm"/></td>
+						<td><input is="iss-input" v-model="row.TBgnTime"/></td>
+						<td><input is="iss-input" v-model="row.TEndTime"/></td>
+						<!--<td><input is="iss-input" v-model="row.CCheckCde"/></td>-->
+						<td><input is="iss-input" :datasource="dict.teethCardStatus" v-model="row.CStatus"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 120px;"></col>
+					</colgroup>
+					<tr>
+						<td class="must">产品名称</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.COutProdName"/></td>
+						<td class="must">卡券编号</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CCardNo"/></td>
+					</tr>
+					<tr>
+						<td class="must">渠道名称</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CChlName"/></td>
+						<td class="must">创建时间</td>
+						<td><input is="iss-date" datefmt="yyyy-MM-dd" class="must" v-model="model.tmpl.TCrtTm"/></td>
+					</tr>
+					<tr>
+						<td class="must">有效起期</td>
+						<td><input is="iss-date" datefmt="yyyy-MM-dd" class="must" v-model="model.tmpl.TBgnTime"/></td>
+						<td class="must">有效止期</td>
+						<td><input is="iss-date" datefmt="yyyy-MM-dd" class="must" v-model="model.tmpl.TEndTime"/></td>
+					</tr>
+					<tr>
+						<td class="must">验证码</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CCheckCde"/></td>
+						<td class="must">状态</td>
+						<td><input is="iss-select" :datasource="dict.teethCardStatus" class="must" v-model="model.tmpl.CStatus"/></td>
+					</tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="导入" @click="importData"/>
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["card", "plupload","CSSctrl"],function(main) {
+		main.init();
+	} );
+	
+</script>

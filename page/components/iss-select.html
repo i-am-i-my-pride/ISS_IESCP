@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-card" title="iss-select">
+        <table is="iss-form" ref="vFilter">
+            <tr>
+                <td style="width: 220px;">根据js的数据获取下拉值</td>
+                <td><input is="iss-select" :datasource="dataSourceDemo" v-model="filter.CStatus"/></td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">根据数据表t_dict获取下拉值</td>
+                <td><input is="iss-select" :datasource="dict.sex" v-model="filter.DStatus"/></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<style>
+    .iss-form .iss-select > input, .iss-form .iss-date > input, .iss-form .iss-cascade > input{
+        height:22px;
+        width:160px;
+    }
+</style>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo","issapi"], function(main) {
+		main.init();
+	} ); 
+</script>

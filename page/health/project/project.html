@@ -1,0 +1,64 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="保单检索 ">
+		<!-- 查询条件start -->
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter" >
+				<tr>
+					<td style="width: 120px;">出险时间</td><td><input is="iss-date" dateFmt="yyyy-MM-dd HH:mm:ss" v-model="filter.TBgnTime"/></td>
+					</td>
+					<td style="width: 120px;">保单号</td><td><input is="iss-input" v-model="filter.CProCode" vtype="numstr"/></td>
+					<td style="width: 120px;">被保险人</td><td><input is="iss-input" v-model="filter.CProjectName" vtype="text"/>
+					<td style="width: 120px;">身份证号</td><td><input is="iss-input" v-model="filter.XZdalei4" validmsg="请选择地址"></td>
+				</tr>
+				<tr>
+					<td>险种大类</td>
+					<td><input is="iss-select" v-model="ops.CCde" :datasource="ops"/></td>
+					<td>险种名称</td>
+					<td><input v-if="ops.CCde==1" is="iss-select" v-model="filter.XZdalei2" :datasource="opss"/><input v-else-if="ops.CCde==2" is="iss-select" v-model="filter.XZdalei2" :datasource="opsss"/><input v-else is="iss-select"/></td>
+					<td>承保机构</td>
+					<td><input is="iss-select" v-model="filter.XZdalei3" :datasource="opsCB" @change='change'/></td>
+				</tr>
+			</table>
+			<div slot="footer"><input is="iss-btn" type="query" @click="list()"/><input is="iss-btn" type="reset"/></div>
+		</div>
+		<!-- 查询条件end -->
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table>
+				<thead>
+				<tr>
+					<th rowspan="2" class="index selector more">全选</th>
+
+					<th rowspan="2" class="order number" style="width: 180px;" orderBy="CProCode">保单号</th>
+					<th rowspan="2" class="order" orderBy="CProjectName" style="width: 100px;">被保险人</th>
+					<th rowspan="2" class="order" orderBy="NNum" style="width: 160px;">身份证号</th>
+					<th rowspan="2" style="width: 160px;">险种名称</th>
+					<th rowspan="2" style="width: 160px;">保险起期</th>
+					<th rowspan="2" style="width: 160px;">保险止期</th>
+					<th rowspan="2">承保机构</th>
+					<th rowspan="2">保单状态</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr v-for="(row, idx) of rowsData" @mouseover="abc(idx)">
+					<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+					<td><input is="iss-link" v-model="row.CProCode"  @click="see(idx)"/></td>
+					<td><input is="iss-input" v-model="row.CProjectName"/></td>
+					<td><input is="iss-input" v-model="row.NNum" format="fix, 2"/></td>
+					<td><input is="iss-input" v-model="row.XZname"/></td>
+					<td><input is="iss-input" v-model="row.TBgnTime" format="fmt, yyyy-MM-dd"/></td>
+					<td><input is="iss-input" v-model="row.TEngTime" format="fmt, yyyy-MM-dd HH:mm:ss"/></td>
+					<td><input is="iss-input" v-model="row.CBorganize"/></td>
+					<td><input is="iss-input" v-model="row.BDstate"/></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+	<script type="text/javascript">
+
+		//加载入口模块
+		seajs.use( ["project"], function(main) {
+			main.init();
+		} );
+	</script>

@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+body {
+	min-width: 1024px;
+	/*纵向渐变*/
+	background: #20a0ff; 
+	background: -webkit-linear-gradient(top, #20a0ff, #57c6fe);/*兼容各类高版本浏览器4*/
+	background: -o-linear-gradient(top,#20a0ff, #57c6fe);
+	background: -moz-linear-gradient(top,#20a0ff, #57c6fe);
+	background: -ms-linear-gradient(left,#20a0ff 0%,#57c6fe 100%); /* IE10-IE11 */
+	filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#20a0ff,endColorStr=#57c6fe);/*兼容IE5-IE9*/
+	background: -webkit-gradient(linear, 0%,100%, from(#20a0ff), to(#57c6fe));/*兼容Safari4-5,chrome1-9 */
+}
+
+.logo {
+	height: 70px;
+	line-height: 70px;
+	background: #fff url("../img/logo.png") no-repeat 10% center;
+	text-align: right;
+	font-size: 12px;
+	padding-right: 10%;
+	color: #475669;
+}
+
+.main {
+	min-width: 1024px;
+	min-height: 500px;
+	position: absolute;
+	top: 70px;
+	bottom: 142px;
+	width: 100%;
+	height: 480px;
+	background: url("../img/login_l.png") no-repeat 8% center;
+}
+
+.main > div {
+	position: absolute;
+	width: 376px;
+	padding-top: 77px;
+	top: 60px;
+	right: 10%;
+	background: url("../img/login_r_t.png") no-repeat left top;
+}
+
+.main > div > div {
+	background: #fff;
+	font-size: 18px;
+	width: 100%;
+	color: #666;
+	padding: 5px 0px;
+}
+
+.main > div > div > div {
+	text-align: center;
+}
+
+.main > div > div > input[type='text'], .main > div > div > input[type='password'] {
+	font-size: 14px;
+	color: #666;
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	width: 240px;
+	height: 28px;
+	line-height: 28px;
+	vertical-align: middle;
+	text-align: left;
+	outline: none;
+	padding: 2px 16px;
+	margin-left: 50px;
+}
+
+.main > div > div > input[type='text']:hover, .main > div > div > input[type='password']:hover {
+	border: 1px solid #b3bccc;
+}
+
+.main > div > div > input[type='text']:focus, .main > div > div > input[type='password']:focus {
+	border: 1px solid #ff4949;
+}
+
+.main > div > div > input.username {
+	background: #fff url("../img/login_user.png") no-repeat 98% center;
+}
+
+.main > div > div > input.password {
+	background: #fff url("../img/login_pwd.png") no-repeat 98% center;
+}
+
+.main > div > div > input.dptcde {
+	background: #fff url("../img/arrowd.png") no-repeat 98% center;
+}
+
+.main > div > div > input.loginbtn {
+	border: 1px solid #d8dce5;
+	border-radius: 2px;
+	background: #409eff;
+	color: #fff;
+	font-size: 14px;
+	height: 34px;
+	margin-left: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	width: 180px;
+}
+
+.main > div > div > input.loginbtn:hover {
+	background: #3d97f3;
+}
+
+.main > div > div > span {
+	font-size: 14px;
+	color: #409eff;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.main > div > div > span:hover {
+	text-decoration: underline;
+}
+
+.copyright {
+	width: 100%;
+	height: 111px;
+	position: fixed;
+	bottom: 0px;
+	background: url("../img/login_b.png") no-repeat center center;
+	color: #666;
+	font-size: 12px;
+	text-align: center;
+}
+
+.copyright > div {
+	width: 100%;
+	position: absolute;
+	text-align: center;
+	bottom: 8px;
+}

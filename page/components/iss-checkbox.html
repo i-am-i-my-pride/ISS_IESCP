@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-card" title="iss-checkbox">
+        <input is="iss-checkbox" title="车损" value="car" />
+        <input is="iss-checkbox" title="物损" value="prop" />
+        <input is="iss-checkbox" title="人伤" value="person" />
+    </div>
+</div>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo"], function(main) {
+		main.init();
+	} ); 
+</script>

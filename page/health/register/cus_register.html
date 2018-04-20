@@ -1,0 +1,91 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="专家门诊预约记录">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">客户姓名</td><td><input is="iss-input" v-model="filter.CName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">医院名称</td><td><input is="iss-input" v-model="filter.CHospitalName"  vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号码</td><td><input is="iss-input" v-model="filter.CMobile" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">科室名称</td><td><input is="iss-input" v-model="filter.CDeptName" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">预约类型</td><td><input is="iss-select" v-model="filter.COrderTyp" :datasource="dict.orderType" /></td>
+					<td style="width: 120px;">医生名称</td><td><input is="iss-input" v-model="filter.CDoctorName" vtype="text" range="[0,20]"/></td>
+				</tr>
+			</table>
+			<div slot="footer"><input is="iss-btn" type="query" @click="list()"/><input is="iss-btn" type="reset"/></div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th style="width: 100px;" class="order" orderBy="CName">客户姓名</th>
+						<th class="order" orderBy="CMobile">手机号</th>
+						<th style="width: 100px;" class="order" orderBy="CCertfCls">证件类型</th>
+						<th style="width: 180px;" class="order" orderBy="CCertfCde">证件号码</th>
+						<th style="width: 160px;" class="order" orderBy="CApptTime">预约时间</th>
+						<th class="order" orderBy="COrderTyp">预约类型</th>
+						<th style="width: 160px;" class="order" orderBy="CHospitalName">医院名称</th>
+						<th class="order" orderBy="CDeptName">科室名称</th>
+						<th style="width: 160px;" class="order" orderBy="TUsedTm">使用时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) of rowsData">
+						<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+						<td><input is="iss-link" v-model="row.CName" @click="see(idx)"/></td>
+						<td><input is="iss-input" v-model="row.CMobile"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+						<td><input is="iss-input" v-model="row.CApptTime"/></td>
+						<td><input is="iss-select" :datasource="dict.orderType" v-model="row.COrderTyp"/></td>
+						<td><input is="iss-input" v-model="row.CHospitalName"/></td>
+						<td><input is="iss-input" v-model="row.CDeptName"/></td>
+						<td><input is="iss-input" v-model="row.TUsedTm"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card"  slot="dialog" slot-scope="model"> 
+					<table is="iss-form" :readonly="model.tmpl.readonly">
+						<tr>
+							<td class="">客户姓名</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CName"/></td>
+							<td class="">手机号</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CMobile"/></td>
+						</tr>
+						<tr>
+							<td class="">预约时间</td>
+							<td><input is="iss-date" class="must" v-model="model.tmpl.CApptTime"/></td>
+							<td class="">预约类型</td>
+							<td><input is="iss-select" class="must select" :datasource="dict.orderType" v-model="model.tmpl.COrderTyp"/></td>
+						</tr>
+						<tr>
+							<td class="">医院名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CHospitalName"/></td>
+							<td class="">科室名称</td>
+							<td><input is="iss-input" class="must" v-model="model.tmpl.CDeptName"/></td>
+						</tr>
+						<tr>
+							<td class="">使用时间</td>
+							<td><input is="iss-date" class="must" v-model="model.tmpl.TUsedTm"/></td>
+						</tr>
+			        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="base" value="导入" @click="importData"/>
+			<input is="iss-btn" type="base" value="导出" @click="exportData"/>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus-register", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>

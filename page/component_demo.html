@@ -1,0 +1,62 @@
+<div v-cloak id="pageDiv">
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>IESCP</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    nav.app-nav li ul {
+      min-width: 100px;
+    }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["demo_index","vuecss"/* ,"darkcss","bublecss" */], function(main) {
+		main.init();
+	} ); 
+	 
+	window.$docsify = {
+         alias: {
+        '.*?/changelog': 'https://raw.githubusercontent.com/i-am-i-my-pride/docsify/master/CHANGELOG',
+        '/.*/_navbar.md': '/_navbar.md'
+      },
+      notFoundPage: '_404.html',
+      auto2top: true,
+      // basePath: '/docs/',
+      basePath: 'https://raw.githubusercontent.com/i-am-i-my-pride/IESCP/master/docs/',
+      executeScript: true,
+      loadNavbar: "./docsify/docs/_navbar.md",
+      loadSidebar: false,
+      coverpage: false,
+      name: 'IESCP',
+      subMaxLevel: 2,
+      mergeNavbar: true,
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            var url = 'https://raw.githubusercontent.com/i-am-i-my-pride/IESCP/master/' + vm.route.file
+            var editHtml = '[:back: 返回框架首页](' + issapi.appCxtPath + ')\n'
+
+            return editHtml
+              + html
+              + '\n\n----\n\n'
+              + editHtml
+          })
+        }
+      ]
+   } 
+	
+	
+</script>
+
+</html>
+</div> 
+<script src="//unpkg.com/docsify" type="text/javascript"></script>

@@ -1,0 +1,163 @@
+<div v-cloak id="pageDiv">
+	<div is="iss-panel" title="客户体检">
+		<div is="iss-card" title="查询条件">
+			<table is="iss-form" ref="vFilter">
+				<tr>
+					<td style="width: 120px;">体检人姓名</td><td><input is="iss-input" v-model="filter.CPeopleName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">医院名称</td><td><input is="iss-input" v-model="filter.CResMc" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">手机号</td><td><input is="iss-input" v-model="filter.CRelationPhone" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">科室名称</td><td><input is="iss-input" v-model="filter.CResPackage" vtype="text" range="[0,20]"/></td>
+				</tr>
+				<tr>
+					<td style="width: 120px;">预约类型</td><td><input is="iss-select" :datasource="dict.orderStatus" v-model="filter.CResWay" /></td>
+				</tr>
+			</table>
+			<div slot="footer">
+				<input is="iss-btn" type="query" @click="list()"/>
+				<input is="iss-btn" type="reset"/>
+			</div>
+		</div>
+		<div is="iss-list" ref="vList" :datasource="rowsData" :gotopage="list">
+			<table class="border" style1="height: 200px;">
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th style="width: 120px;">操作</th>
+						<th class="order" orderBy="CPeopleName">体检人姓名</th>
+						<th style="width: 100px;" class="order" orderBy="CRelationPhone">体检人手机号</th>
+						<th class="order" orderBy="TApptDate">预约日期</th>
+						<th style="width: 120px;" class="order" orderBy="CCertfCls">体检人证件类型</th>
+						<th style="width: 100px;" class="order" orderBy="CCertfCde">体检人证件号</th>
+						<th class="order" orderBy="CResMc">医院名称</th>
+						<th class="order" orderBy="CResPackage">科室名称</th>
+						<th class="order" orderBy="TCancelDate">取消时间</th>
+						<th class="order" orderBy="CResWay">预约类型</th>
+						<th class="order" orderBy="CCancelReason">取消原因</th>
+						<th class="order" orderBy="CDesc">备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, index) of rowsData">
+						<td is="iss-index" v-model="row._select">{{index + 1}}</td>
+						<td>
+							<input is="iss-btn" type="update" @click="update(index, $event)">
+							<input is="iss-btn" type="remove" @click="remove(index, $event)">
+						</td>
+						<td><input is="iss-input" v-model="row.CPeopleName"/></td>
+						<td><input is="iss-input" v-model="row.CRelationPhone"/></td>
+						<td><input is="iss-input" v-model="row.TApptDate"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+						<td><input is="iss-input" v-model="row.CResMc"/></td>
+						<td><input is="iss-input" v-model="row.CResPackage"/></td>
+						<td><input is="iss-input" v-model="row.TCancelDate"/></td>
+						<td><input is="iss-select" :datasource="dict.orderStatus" v-model="row.CResWay"/></td>
+						<td><input is="iss-select" :datasource="dict.cancelReason" v-model="row.CCancelReason"/></td>
+						<td><input is="iss-input" v-model="row.CDesc"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div is="iss-card" slot="dialog" slot-scope="model">
+				<table is="iss-form" ref="inspectform" :readonly="model.tmpl.readonly">
+					<colgroup>
+						<col style="width: 130px;"></col>
+					</colgroup>
+					<tr>
+						<td class="must">体检人姓名</td>
+						<td style="width: 280px;">
+							<input is="iss-input"  class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CPeopleName" range="[1]" validmsg="请输入姓名"/>
+							<input v-if=!updateStatus is="iss-btn" type="base" value="选择用户" @click="chooseUser(model.tmpl)"/>
+						</td>
+						<td class="must">体检人手机号</td>
+						<td><input is="iss-input"  class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CRelationPhone" vtype="phone"/></td>
+					</tr>
+					<tr>
+						<td class="must">体检人证件类型</td>
+						<td><input is="iss-select"  class="must readonly CCertfCls" style="border:1px solid #ccc" v-model="model.tmpl.CCertfCls" :datasource="dict.certfType" range="[1]" validmsg="请选择证件类型"/></td>
+						<td class="must">体检人证件号</td>
+						<td><input is="iss-input" class="must readonly" style="border:1px solid #ccc" v-model="model.tmpl.CCertfCde" range="[1]" validmsg="请输入证件号"/></td>
+					</tr>
+					<tr>
+						<td class="must">医院名称</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CResMc" range="[1]" validmsg="请输入医院名称"/></td>
+						<td class="must">科室名称</td>
+						<td><input is="iss-input" class="must" v-model="model.tmpl.CResPackage" range="[1]" validmsg="请输入科室名称"/></td>
+					</tr>
+					<tr>
+						<td class="must">预约类型</td>
+						<td><input is="iss-select" class="must" @changeval="model.tmpl.TCancelDate='';model.tmpl.CCancelReason=''" v-model="model.tmpl.CResWay" :datasource="dict.orderStatus" range="[1]" validmsg="请选择预约类型"/></td>
+						<td class="must">预约日期</td>
+						<td><input is="iss-date" class="must" :minDate="issapi.diff(new Date())" dateFmt="yyyy-MM-dd HH:mm:ss" v-model="model.tmpl.TApptDate" range="[1]" validmsg="请选择预约日期"/></td>
+					</tr>
+					<tr>
+						<td  v-if="model.tmpl.CResWay=='4'">取消时间</td>
+						<td  v-if="model.tmpl.CResWay=='4'"><input is="iss-date" :minDate="issapi.diff(new Date())"  dateFmt="yyyy-MM-dd HH:mm:ss" v-model="model.tmpl.TCancelDate" /></td>
+						<td  v-if="model.tmpl.CResWay=='4'">取消原因</td>
+						<td  v-if="model.tmpl.CResWay=='4'"><input is="iss-select" v-model="model.tmpl.CCancelReason" :datasource="dict.cancelReason" /></td>
+					</tr>
+					<tr>
+						<td  :class="{must:model.tmpl.CCancelReason=='4'&&model.tmpl.CResWay=='4'}">备注</td>
+						<td v-if="model.tmpl.CCancelReason=='4'&&model.tmpl.CResWay=='4'" colspan="3"><input is="iss-input" class="must iss-input" multiline="true" style="width:93%;" v-model="model.tmpl.CDesc" range="[1,255]" validmsg="请输入备注"/></td>
+						<td v-else colspan="3"><input is="iss-input" class="iss-input" multiline="true" style="width:93%;" v-model="model.tmpl.CDesc"/></td>
+					</tr>
+		        </table>
+			</div>
+		</div>
+		<div slot="footer">
+			<input is="iss-btn" type="insert" @click="add()"/>
+			<input is="iss-btn" type="delete" @click="remove()"/>
+			<input is="iss-btn" type="modify" @click="update()"/>
+			<input is="iss-btn" type="base" value="上传体检报告" @click="uploadReport()"/>
+			<input is="iss-btn" type="base" value="下载体检报告" @click="downloadReport()"/>
+		</div>
+	</div>
+	<div id="userDiv" class="dialog">		
+		<div is="iss-card" title="用户列表">
+			<table is="iss-form">
+				<tr>
+					<td style="width: 120px;">客户姓名</td><td><input is="iss-input" v-model="userFilter.CName" vtype="text" range="[0,20]"/></td>
+					<td style="width: 120px;">手机号码</td><td><input is="iss-input" v-model="userFilter.CMobile"  vtype="text" range="[0,20]" /></td>
+				</tr>
+			</table>
+			<div slot="footer"><input is="iss-btn" type="query" @click="listUser()"/><input is="iss-btn" type="reset"/></div>
+		</div>
+		<div is="iss-list" ref="user" :datasource="userData" :gotopage="listUser">
+			<table>
+				<thead>
+					<tr>
+						<th class="index selector more">全选</th>
+						<th>客户姓名</th>
+						<th>手机号码</th>
+						<th>证件类型</th>
+						<th>证件号码</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) of userData">
+						<td is="iss-index" v-model="row._select">{{idx + 1}}</td>
+						<td><input is="iss-input" v-model="row.CName"/></td>
+						<td><input is="iss-input" v-model="row.CMobile"/></td>
+						<td><input is="iss-select" :datasource="dict.certfType" v-model="row.CCertfCls"/></td>
+						<td><input is="iss-input" v-model="row.CCertfCde"/></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br/>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//加载入口模块
+	seajs.use( ["cus_inspect", "plupload","CSSctrl"], function(main) {
+		main.init();
+	} );
+	
+</script>
+<style>
+   #pageDiv .CCertfCls input{
+       width:158px;
+   }
+</style>

@@ -1,0 +1,284 @@
+@charset "UTF-8";
+
+.main {
+	min-width: 1280px;
+	background: #f5f8fa;
+}
+
+/** 项部 */
+.main .top {
+	height: 70px;
+	padding: 0px 20px;
+	background: #fff;
+}
+.main .top .logo {
+	width: 233px;
+	height: 70px;
+	float: left;
+	text-align: right;
+	background: url("../img/logo.png") no-repeat left center;
+}
+.main .top .userinfo {
+	height: 70px;
+	min-width: 260px;
+	line-height: 70px;
+	display: inline-block;
+	float: right;
+	text-align: left;
+	position: relative;
+}
+.main .top .userinfo .photo {
+	width: 44px;
+	height: 44px;
+	border-radius: 8px;
+	background: url("../img/user.jpg") no-repeat center center;
+	position: absolute;
+	top: 13px;
+	left: 0px;
+	cursor: pointer;
+}
+.main .top .userinfo .info {
+	font-size: 14px;
+	margin-left: 60px;
+	line-height: 24px;
+	vertical-align: middle;
+	display: inline-block;
+	min-width: 200px;
+}
+.main .top .userinfo .info .dpt {
+	color: #999;
+}
+.main .top .userinfo .info span {
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	color: #999;
+	display: inline-block;
+	font-size: 12px;
+	text-align: right;
+	cursor: pointer;
+}
+.main .top .userinfo .info .user {
+	color: #20a0ff;
+	width: auto;
+	cursor: default;
+	font-size: 14px;
+}
+.main .top .userinfo .info > div {
+	position: relative;
+}
+.main .top .userinfo .info .opr {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.main .top .userinfo .info .msg {
+	margin-left: 14px;
+	background: url("../img/msg.png") no-repeat left center;
+}
+.main .top .userinfo .info .msg:hover {
+	background: url("../img/msg_h.png") no-repeat left center;
+}
+.main .top .userinfo .info .help {
+	margin-left: 14px;
+	background: url("../img/help.png") no-repeat left center;
+}
+.main .top .userinfo .info .help:hover {
+	background: url("../img/help_h.png") no-repeat left center;
+}
+.main .top .userinfo .info .exit {
+	margin-left: 14px;
+	background: url("../img/out.png") no-repeat left center;
+}
+.main .top .userinfo .info .exit:hover {
+	background: url("../img/out_h.png") no-repeat left center;
+}
+/*****************************************************************/
+
+/** 菜单 */
+.main .mmenu {
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+.main .menu {
+	overflow: hidden;
+	height: 40px;
+	background: #20a2ff;
+	transition: height ease 0.5s;
+	position: absolute;
+	top: 0px;
+	z-index: 1000;
+	width: 100%;
+}
+.main .menu:hover {
+	background: rgba(29,140,224,0.9);	
+	border-bottom: 3px solid #ff7200;
+}
+@media \0screen\,screen\9{.main .menu:hover { 
+	background: rgba(29,140,224,0.9);
+}}
+.main .menu .head {
+	width: auto;
+	height: 40px;
+	background-color: #20a2ff;
+}
+.main .menu .head > span {
+	min-width: 100px;
+	padding: 0px 10px;
+	text-align: center;
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+	vertical-align: top;
+}
+.main .menu .head > span.hidden {
+	display: none;
+}
+.main .menu .head > span:hover {
+	background: rgba(100,100,100,0.2);
+}
+@media \0screen\,screen\9{.main .menu .head>span:hover { /* ie678 */
+	background: #20a2ff;
+}}
+.main .menu .head > span > p  {
+	color: #fff;
+	text-decoration: none;
+}
+.main .menu .head > span > p[url]:hover {
+	color: #fff;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.main .menu .head > span > p.title {
+	font-size: 14px;
+	line-height: 40px;
+	margin-top: 0;
+	vertical-align: middle;
+	font-weight: bold;
+}
+.main .menu .head> span:hover > p.title{
+	color: #f39d0c;
+}
+.main .menu > div.toleft {
+	float: left;
+	width: 16px;
+	height: 40px;
+	visibility: hidden;
+	-moz-user-select: none;
+　　-webkit-user-select: none;
+　　-ms-user-select: none;
+　　-khtml-user-select: none;
+	background: url("../img/pre.png") no-repeat center center;
+}
+.main .menu > div.toleft:hover {
+	background-color: #fafafa;
+	cursor: pointer;
+}
+.main .menu > div.toright {
+	float: right;
+	width: 16px;
+	height: 40px;
+	visibility: hidden;
+	-moz-user-select: none;
+　　-webkit-user-select: none;
+　　-ms-user-select: none;
+　　-khtml-user-select: none;
+	background: url("../img/next.png") no-repeat center center;
+}
+.main .menu > div.toright:hover {
+	background-color: #fafafa;
+	cursor: pointer;
+}
+/*****************************************************************/
+
+/** 导航栏 */
+.main .pc {
+	position: relative;
+	border-bottom: 1px solid #d3dce6;
+}
+.main .path {
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	background: #fff url("../img/position.png") no-repeat 20px center;
+}
+.main .path li {
+	list-style: none;
+	display: inline;
+	height: 30px;
+	line-height: 30px;
+	color: #c0ccda;
+	font-size: 14px;
+	margin-right: 10px;
+	padding-left: 22px;
+	background: url("../img/arrowr.png") no-repeat center left;
+}
+.main .path li[url]:hover {
+	text-decoration: underline;
+	color: #f39d0c;
+	cursor: pointer;
+}
+.main .path li[url].last {
+	color: #475669;
+}
+.main .path li[url].last:hover {
+	text-decoration: none;
+	color: #4c4c4c;
+	cursor: auto;
+}
+.main .path li:first-child {
+	margin-left: 40px;
+	padding-left: 0px;
+	background: transparent;
+}
+.main .path li:first-child:hover {
+	text-decoration: underline;
+	color: #f39d0c;
+	cursor: pointer;
+}
+.main .sysdate {
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	color: #475669;
+	font-size: 12px;
+}
+/*****************************************************************/
+
+/** 内容区 */
+.main .ccontain {
+	background: #fff;
+}
+.main .ccontain .contain {
+	border-radius: 5px;
+	border: 0px solid #fff;
+	background: #fff;
+	padding: 10px 20px;
+}
+.main .ccontain .dialog {
+	display: none;
+	padding: 10px;
+}
+.main .ccontain .copyright {
+	height: 30px;
+	line-height: 30px;
+	background: #f5f8fa;
+	color: #959ba7;
+	font-size: 12px;
+	text-align: center;
+}
+/*****************************************************************/
+
+/** 三级菜单 */
+.main .ssmenu {
+	font-size:12px;
+	color:#e1e1e1;
+	cursor:pointer;
+	line-height:18px;	
+}
+.main .ssmenu:hover{
+	text-decoration: underline;
+}
+
+/*****************************************************************/

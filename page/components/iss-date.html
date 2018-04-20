@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div is="iss-card" title="iss-date">
+        <table is="iss-form">
+            <tr>
+                <td style="width: 120px;">年月日时分秒</td>
+                <td><input is="iss-date" dateFmt="yyyy-MM-dd HH:mm:ss" /></td>
+                <td style="width: 120px;">年月日</td>
+                <td><input is="iss-date" dateFmt="yyyy-MM-dd" /></td>
+                <td style="width: 120px;">时分秒</td>
+                <td><input is="iss-date" dateFmt="HH:mm:ss" /></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<style>
+    .iss-form .iss-select > input, .iss-form .iss-date > input, .iss-form .iss-cascade > input{
+        width:160px;
+        height:24px;
+    }
+</style>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo","laydate","issapi"], function(main) {
+		main.init();
+	} ); 
+</script>

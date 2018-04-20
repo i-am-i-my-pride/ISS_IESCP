@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="../../core/theme/default/css/iss-component.css">
+<script type="text/javascript" src="../../userinfo.js"></script>
+<script type="text/javascript" src="../../version.js"></script>
+<script type="text/javascript" src="../../core/js/sea-3.0.0.js" id="seajsnode"></script>
+<script type="text/javascript" src="../../core/js/lib/vue-2.5.9.min.js"></script>
+<script type="text/javascript" src="../../core/js/issapi.min.js"></script>
+<script type="text/javascript" src="../../core/js/lib/iss-component.min.js"></script>
+
+
+<div v-cloak id="pageDiv">
+    <div >
+        <input is="iss-btn" type="append" value="我是增加按钮" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="view" value="查看" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="update" value="修改" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="remove" value="删除" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="set" value="设置" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="release" value="启用" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="cancelrelease" value="禁用" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="relate" value="关联" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="relateCancel" value="取消关联" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="pause" value="暂停" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="restart" value="重启" @click="layer.warn('按钮组件')"/>
+        <input is="iss-btn" type="common" value="通用小按钮" @click="layer.warn('按钮组件')"/>
+    </div>
+</div>
+<script type="text/javascript">
+	//加载入口模块
+	seajs.use( ["components_demo"], function(main) {
+		main.init();
+	} ); 
+</script>
